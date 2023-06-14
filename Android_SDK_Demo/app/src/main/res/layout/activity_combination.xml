@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/adapter_recyclerview_padding_start"
+    android:paddingEnd="@dimen/adapter_recyclerview_padding_start">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tool"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/combination_information"
+            android:textSize="@dimen/adapter_recyclerview_device_name_txt_size" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/adapter_recyclerview_margin_top"
+            android:paddingBottom="@dimen/adapter_recyclerview_margin_top">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/row_height">
+
+                <TextView
+                    android:layout_width="@dimen/zero"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:gravity="center_vertical"
+                    android:text="@string/state_of_charge"
+                    android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+                <TextView
+                    android:id="@+id/state_of_charge"
+                    android:layout_width="@dimen/zero"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:clickable="true"
+                    android:gravity="center_vertical|end"
+                    android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/row_height">
+
+                <TextView
+                    android:layout_width="@dimen/zero"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:gravity="center_vertical"
+                    android:text="@string/electric_quantity"
+                    android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+                <TextView
+                    android:id="@+id/electric_quantity"
+                    android:layout_width="@dimen/zero"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:clickable="true"
+                    android:gravity="center_vertical|end"
+                    android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/row_height">
+
+                <TextView
+                    android:layout_width="@dimen/zero"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:gravity="center_vertical"
+                    android:text="@string/pressure_switch"
+                    android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+                <TextView
+                    android:id="@+id/pressure_switch"
+                    android:layout_width="@dimen/zero"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:clickable="true"
+                    android:gravity="center_vertical|end"
+                    android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/row_height">
+
+                <TextView
+                    android:layout_width="@dimen/zero"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:gravity="center_vertical"
+                    android:text="@string/sedentary_monitoring"
+                    android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+                <TextView
+                    android:id="@+id/sedentary_monitoring"
+                    android:layout_width="@dimen/zero"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:clickable="true"
+                    android:gravity="center_vertical|end"
+                    android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/row_height">
+
+                <TextView
+                    android:layout_width="@dimen/zero"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:gravity="center_vertical"
+                    android:text="@string/bright_screen_switch"
+                    android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+                <TextView
+                    android:id="@+id/bright_screen_switch"
+                    android:layout_width="@dimen/zero"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:clickable="true"
+                    android:gravity="center_vertical|end"
+                    android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/row_height">
+
+                <TextView
+                    android:layout_width="@dimen/zero"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:gravity="center_vertical"
+                    android:text="@string/vibration_mode"
+                    android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+                <TextView
+                    android:id="@+id/vibration_mode"
+                    android:layout_width="@dimen/zero"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:clickable="true"
+                    android:gravity="center_vertical|end"
+                    android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/row_height">
+
+                <TextView
+                    android:layout_width="@dimen/zero"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:gravity="center_vertical"
+                    android:text="@string/wearing_habits"
+                    android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+                <TextView
+                    android:id="@+id/wearing_habits"
+                    android:layout_width="@dimen/zero"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:clickable="true"
+                    android:gravity="center_vertical|end"
+                    android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/row_height">
+
+                <TextView
+                    android:layout_width="@dimen/zero"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:gravity="center_vertical"
+                    android:text="@string/equipment_unit"
+                    android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+                <TextView
+                    android:id="@+id/equipment_unit"
+                    android:layout_width="@dimen/zero"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:clickable="true"
+                    android:gravity="center_vertical|end"
+                    android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/row_height">
+
+                <TextView
+                    android:layout_width="@dimen/zero"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:gravity="center_vertical"
+                    android:text="@string/heart_rate_monitoring"
+                    android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+                <TextView
+                    android:id="@+id/heart_rate_monitoring"
+                    android:layout_width="@dimen/zero"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:clickable="true"
+                    android:gravity="center_vertical|end"
+                    android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/row_height">
+
+                <TextView
+                    android:layout_width="@dimen/zero"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:gravity="center_vertical"
+                    android:text="@string/do_not_disturb"
+                    android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+                <TextView
+                    android:id="@+id/do_not_disturb"
+                    android:layout_width="@dimen/zero"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:clickable="true"
+                    android:gravity="center_vertical|end"
+                    android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/row_height">
+
+                <TextView
+                    android:layout_width="@dimen/zero"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:gravity="center_vertical"
+                    android:text="@string/dial_ID"
+                    android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+                <TextView
+                    android:id="@+id/dial_ID"
+                    android:layout_width="@dimen/zero"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.0"
+                    android:clickable="true"
+                    android:gravity="center_vertical|end"
+                    android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+            </TableRow>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/row_height">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/event_switch"
+                    android:gravity="center_vertical"
+                    android:text="@string/vibration_mode"
+                    android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+
+                <Switch
+                    android:id="@+id/event_switch"
+                    android:layout_width="@dimen/adapter_alarm_switch_width"
+                    android:layout_height="@dimen/adapter_alarm_switch_high"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/adapter_recyclerview_margin_top"
+                    android:focusable="false"
+                    android:thumb="@drawable/switch_thumb"
+                    android:track="@drawable/switch_frame" />
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/submit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/title_height"
+                android:layout_marginStart="@dimen/adapter_recyclerview_padding_start"
+                android:layout_marginTop="@dimen/title_height"
+                android:layout_marginEnd="@dimen/adapter_recyclerview_padding_start"
+                android:background="@color/dialog_submit_txt_color"
+                android:gravity="center"
+                android:text="@string/ok"
+                android:textSize="@dimen/adapter_recyclerview_device_name_txt_size" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

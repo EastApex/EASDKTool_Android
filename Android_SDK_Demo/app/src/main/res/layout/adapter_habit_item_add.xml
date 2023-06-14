@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/item_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/row_height"
+        android:layout_marginStart="@dimen/circle_box_width"
+        android:layout_marginEnd="@dimen/circle_box_width"
+        android:layout_marginBottom="@dimen/adapter_recyclerview_margin_top"
+        android:background="@drawable/dialog_nick_input">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/adapter_recyclerview_padding_start"
+                android:layout_height="@dimen/adapter_recyclerview_padding_start"
+                android:layout_gravity="center_vertical"
+
+                android:scaleType="fitCenter"
+                android:src="@drawable/habit_add_icon" />
+
+            <TextView
+                android:id="@+id/add_habit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical|end"
+                android:lines="1"
+                android:paddingStart="@dimen/adapter_recyclerview_margin_top"
+                android:paddingEnd="@dimen/adapter_recyclerview_margin_top"
+                android:text="@string/Add_habit"
+                android:textSize="@dimen/circle_box_width" />
+        </LinearLayout>
+    </RelativeLayout>
+</TableRow>

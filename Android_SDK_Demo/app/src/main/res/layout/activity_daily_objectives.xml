@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/adapter_recyclerview_padding_start"
+    android:paddingEnd="@dimen/adapter_recyclerview_padding_start">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tool"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/daily_objectives"
+            android:textSize="@dimen/adapter_recyclerview_device_name_txt_size" />
+    </RelativeLayout>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/row_height">
+
+        <TextView
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:gravity="center_vertical"
+            android:text="@string/steps"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:id="@+id/steps"
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:clickable="true"
+            android:gravity="center_vertical|end"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/row_height">
+
+        <TextView
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:gravity="center_vertical"
+            android:text="@string/calorie"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:id="@+id/calorie"
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:clickable="true"
+            android:gravity="center_vertical|end"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/row_height">
+
+        <TextView
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:gravity="center_vertical"
+            android:text="@string/distance"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:id="@+id/distance"
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:clickable="true"
+            android:gravity="center_vertical|end"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/row_height">
+
+        <TextView
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:gravity="center_vertical"
+            android:text="@string/exercise_duration"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:id="@+id/exercise_duration"
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:clickable="true"
+            android:gravity="center_vertical|end"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/row_height">
+
+        <TextView
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:gravity="center_vertical"
+            android:text="@string/sleep_duration"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:id="@+id/sleep_duration"
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:clickable="true"
+            android:gravity="center_vertical|end"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+    </TableRow>
+</LinearLayout>

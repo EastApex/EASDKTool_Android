@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/dimen_5"
+    android:paddingTop="@dimen/dimen_5"
+    android:paddingEnd="@dimen/dimen_5"
+    android:paddingBottom="@dimen/dimen_5">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/zodiac_back"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/zodiac_image"
+            android:layout_width="@dimen/dimen_89"
+            android:layout_height="@dimen/dimen_78"
+            android:background="@drawable/dial_zodiac_file_back"
+            android:scaleType="fitCenter" />
+    </RelativeLayout>
+</RelativeLayout>

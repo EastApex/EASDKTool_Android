@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.apex.sdk">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+
+    <application
+        android:name=".DemoApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".ui.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <receiver
+            android:name=".broadcast.CallReceiveBroadcast"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="1000">
+                <action android:name="android.intent.action.PHONE_STATE" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".ui.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.WatchInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.UserInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.SyncTimeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.ScreenBrightnessActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.RestScreenActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.PowerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.LanguageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.DeviceUnitActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.DeviceActionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.NoDisturbActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.SyncHomeTimeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.DailyObjectivesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.CycleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.SleepMonitoringActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.HeartReteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.SedentaryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.PushInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.WeatherActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.RemindActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.AlarmActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.AddAlarmActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.EditAlarmActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.ScheduleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.AddScheduleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.EditScheduleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.DistanceUnitActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.WeightUnitActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.CalorieSwitchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.BrightScreenActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.CombinationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.MenuActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.SystemDialActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.PushSwitchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.PeriodActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.SyncMonitorActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.OtaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.BindActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.HabitSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.AddHabitActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.TodayTotalSportDataActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.AddContactActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.CustomDialActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Base.Theme.AppCompat" />
+        <activity
+            android:name=".ui.MonitorReminderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.AppSports"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.SetAppSportData"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.CheckActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.GetMotionDataByTypeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.SleepBloodMonitorActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.StressMonitorActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.TimeDataSwitchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.VibrateModeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.WatchSportActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.DiffColorTxtDialActivity"
+            android:screenOrientation="portrait" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.apex.sdk.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_xml" />
+        </provider>
+
+        <!--  <meta-data
+              android:name="EABLE_BLUETOOTH_FILTER"
+              android:value="APEX A02,APEX M02,APEX M02L,APEX M51,iTouch Flex" />
+              -->
+    </application>
+
+</manifest>

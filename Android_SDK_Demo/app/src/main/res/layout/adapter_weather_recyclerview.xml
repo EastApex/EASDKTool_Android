@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/row_height">
+
+        <TextView
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:gravity="center_vertical"
+            android:text="@string/daytime_weather"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:id="@+id/daytime_weather"
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:clickable="true"
+            android:gravity="center_vertical|end"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/row_height">
+
+        <TextView
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:gravity="center_vertical"
+            android:text="@string/night_weather"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:id="@+id/night_weather"
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:clickable="true"
+            android:gravity="center_vertical|end"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/row_height">
+
+        <TextView
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:gravity="center_vertical"
+            android:text="@string/min_temperature"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:id="@+id/min_temperature"
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:clickable="true"
+            android:gravity="center_vertical|end"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/row_height">
+
+        <TextView
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:gravity="center_vertical"
+            android:text="@string/max_temperature"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:id="@+id/max_temperature"
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:clickable="true"
+            android:gravity="center_vertical|end"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/row_height">
+
+        <TextView
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:gravity="center_vertical"
+            android:text="@string/sunrise_time"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:id="@+id/sunrise_time"
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:clickable="true"
+            android:gravity="center_vertical|end"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/row_height">
+
+        <TextView
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:gravity="center_vertical"
+            android:text="@string/sunset_time"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:id="@+id/sunset_time"
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:clickable="true"
+            android:gravity="center_vertical|end"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/row_height">
+
+        <TextView
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:gravity="center_vertical"
+            android:text="@string/air_quality"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:id="@+id/air_quality"
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:clickable="true"
+            android:gravity="center_vertical|end"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/row_height">
+
+        <TextView
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:gravity="center_vertical"
+            android:text="@string/min_wind_force"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:id="@+id/min_wind_force"
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:clickable="true"
+            android:gravity="center_vertical|end"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/row_height">
+
+        <TextView
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:gravity="center_vertical"
+            android:text="@string/max_wind_force"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:id="@+id/max_wind_force"
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:clickable="true"
+            android:gravity="center_vertical|end"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/row_height">
+
+        <TextView
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:gravity="center_vertical"
+            android:text="@string/uv_intensity"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:id="@+id/uv_intensity"
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:clickable="true"
+            android:gravity="center_vertical|end"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/row_height">
+
+        <TextView
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:gravity="center_vertical"
+            android:text="@string/air_humidity"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:id="@+id/air_humidity"
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:clickable="true"
+            android:gravity="center_vertical|end"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/row_height">
+
+        <TextView
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:gravity="center_vertical"
+            android:text="@string/moon"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:id="@+id/moon"
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:clickable="true"
+            android:gravity="center_vertical|end"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/row_height">
+
+        <TextView
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:gravity="center_vertical"
+            android:text="@string/cloudiness"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:id="@+id/cloudiness"
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:clickable="true"
+            android:gravity="center_vertical|end"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+    </TableRow>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/adapter_recyclerview_margin_bottom"
+        android:background="@color/frame_color" />
+
+</LinearLayout>

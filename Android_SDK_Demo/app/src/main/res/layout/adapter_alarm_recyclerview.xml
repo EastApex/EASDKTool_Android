@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/circle_box_width">
+
+    <RelativeLayout
+        android:id="@+id/item_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:paddingTop="@dimen/adapter_recyclerview_margin_bottom"
+        android:paddingBottom="@dimen/adapter_recyclerview_margin_bottom">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/adapter_recyclerview_margin_top"
+            android:layout_marginEnd="@dimen/adapter_recyclerview_margin_top"
+            android:layout_toStartOf="@+id/event_switch"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/event_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:textSize="@dimen/adapter_recyclerview_device_name_txt_size" />
+
+            <TextView
+                android:id="@+id/remind_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/adapter_recyclerview_margin_bottom"
+                android:gravity="start"
+                android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+        </LinearLayout>
+
+        <Switch
+            android:id="@+id/event_switch"
+            android:layout_width="@dimen/adapter_alarm_switch_width"
+            android:layout_height="@dimen/adapter_alarm_switch_high"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/adapter_recyclerview_margin_top"
+            android:focusable="false"
+            android:thumb="@drawable/switch_thumb"
+            android:track="@drawable/switch_frame" />
+    </RelativeLayout>
+
+</LinearLayout>

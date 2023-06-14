@@ -1,0 +1,579 @@
+<resources>
+    <string name="app_name">apex_sdk</string>
+    <string name="unsupported">Ble Bluetooth is not supported</string>
+    <string name="location_permission">Please enable location permission</string>
+    <string name="no_equipment">No Bluetooth devices were found</string>
+    <string name="device_address">Device address does not exist</string>
+    <string name="no_response">Device response timeout</string>
+    <string name="parse_error">Data parsing error</string>
+    <string name="fail_in_send">Data sending failed</string>
+    <string name="disconnect">Device disconnected</string>
+    <string name="closed">Bluetooth is not turned on</string>
+    <string name="stack_error">Data stack error</string>
+    <string name="already_started">BLE scan with the same settings is already started by the app</string>
+    <string name="cannot_register">App cannot be registered</string>
+    <string name="internal_error">Internal error</string>
+    <string name="power_optimization_error">Power optimization scanning is not supported</string>
+    <string name="insufficient_resources">Insufficient hardware resources</string>
+    <string name="frequent_scanning">Application tries to scan too frequently</string>
+    <string name="unknown">unknown</string>
+    <string name="device_connected">Device connected</string>
+    <string name="not_found">Device not found</string>
+    <string name="connection_timed_out">Device connection timeout</string>
+    <string name="example">Api list example</string>
+    <string name="not_connected">Device not connected</string>
+    <string name="connecting">Device is connecting</string>
+    <string name="connection_failed">Connection failed</string>
+    <string name="connection_error">Error found while connecting</string>
+    <string name="watch_id">Watch id</string>
+    <string name="watch_type">Watch type</string>
+    <string name="firmware_version">Firmware version</string>
+    <string name="binding_status">Binding_status</string>
+    <string name="user_id">User id</string>
+    <string name="agps_update_time">Agps update time</string>
+    <string name="bound">Bound</string>
+    <string name="unbound">Unbound</string>
+    <string name="failed_to_get_data">Failed to get data</string>
+    <string name="waite">Please wait.....</string>
+    <string name="sex">Sex</string>
+    <string name="age">Age</string>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="wearing_habits">Wearing habits</string>
+    <string name="skin_colour">Skin colour</string>
+    <string name="modify_information">Modify information</string>
+    <string name="female">Female</string>
+    <string name="male">Male</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="modification_failed">Modification failed</string>
+    <string name="left">Left</string>
+    <string name="right">Right</string>
+    <string name="skin_white">white</string>
+    <string name="skin_white_yellow">white yellow</string>
+    <string name="skin_yellow">yellow</string>
+    <string name="skin_yellow_black">yellow_black</string>
+    <string name="skin_black">black</string>
+    <string name="year">Year</string>
+    <string name="month">Month</string>
+    <string name="day">Day</string>
+    <string name="hour">Hour</string>
+    <string name="minute">Minute</string>
+    <string name="second">Second</string>
+    <string name="hour_system">Hour system</string>
+    <string name="time_zone">Time zone</string>
+    <string name="current_hour">Current hour</string>
+    <string name="current_minute">Current minute</string>
+    <string name="sync_mode">Sync mode</string>
+    <string name="eastern_time_zone">Eastern time zone</string>
+    <string name="west_time_zone">West time zone</string>
+    <string name="zero_time_zone">Zero time zone</string>
+    <string name="general_sync">General sync</string>
+    <string name="sync_to_movement">Sync to movement</string>
+    <string name="twelve_hour_system">12 hour system</string>
+    <string name="twenty_four_hour_system">24 hour system</string>
+    <string name="binding_succeeded">Binding succeeded</string>
+    <string name="state_of_charge">State of charge</string>
+    <string name="electric_quantity">Electric quantity</string>
+    <string name="language">Language</string>
+    <string name="language_default">Default</string>
+    <string name="language_english">English</string>
+    <string name="language_chinese_simplifid">Chinese simplifid</string>
+    <string name="language_chinese_traditional">Chinese_traditional</string>
+    <string name="language_korean">Korean</string>
+    <string name="language_thai">Thai</string>
+    <string name="language_japanese">Japanese</string>
+    <string name="language_spanish">Spanish</string>
+    <string name="language_francais">Francais</string>
+    <string name="language_deutsch">Deutsch</string>
+    <string name="language_italiano">Italiano</string>
+    <string name="language_polski">Polski</string>
+    <string name="language_portuguese">Portuguese</string>
+    <string name="language_russian">Russian</string>
+    <string name="language_dutch">Dutch</string>
+    <string name="language_arabic">Arabic</string>
+    <string name="language_greek">Greek</string>
+    <string name="language_hebrew">Hebrew</string>
+    <string name="language_swedish">Swedish</string>
+    <string name="device_unit_metric">Metric(m,km,cm)</string>
+    <string name="device_unit_imperial">Imperial(feet,miles,inch)</string>
+    <string name="device_action_restore">Restore factory settings</string>
+    <string name="device_action_restart">Restart</string>
+    <string name="device_action_bright_screen">Light up the screen</string>
+    <string name="device_action_rest_screen">Rest screen</string>
+    <string name="device_action_restore_hint">Restore the factory settings and exit the app</string>
+    <string name="disturb_switch">Switch</string>
+    <string name="start_time">Start time</string>
+    <string name="end_time">End time</string>
+    <string name="switch_state_close">Off</string>
+    <string name="switch_state_on">On</string>
+    <string name="on_or_off">On or off</string>
+    <string name="hometown_name">Hometown name</string>
+    <string name="add_failed">Add failed</string>
+    <string name="steps">Number of steps</string>
+    <string name="calorie">Calorie</string>
+    <string name="distance">Distance</string>
+    <string name="exercise_duration">Exercise duration</string>
+    <string name="sleep_duration">Sleep duration</string>
+    <string name="cycle">Cycle</string>
+    <string name="every_day">Every day</string>
+    <string name="mon">Mon</string>
+    <string name="tue">Tue</string>
+    <string name="wed">Wed</string>
+    <string name="thur">Thur</string>
+    <string name="fri">Fri</string>
+    <string name="sat">Sat</string>
+    <string name="sun">Sun</string>
+    <string name="only_once">Only once</string>
+    <string name="interval_time">Interval time</string>
+    <string name="alarm_switch">Alarm switch</string>
+    <string name="max_heart_rate">Maximum heart rate</string>
+    <string name="min_heart_rate">Minimum heart rate</string>
+    <string name="push_info">Push info</string>
+    <string name="face_book_title">Face book title</string>
+    <string name="face_book_content">Face book title</string>
+    <string name="push_time">Push time</string>
+    <string name="call_title">Call title</string>
+    <string name="call_content">Call content</string>
+    <string name="hang_up_title">Hang up call</string>
+    <string name="hang_up_content">Hang up content</string>
+    <string name="sms_title">SMS title</string>
+    <string name="sms_content">sms_content</string>
+    <string name="push_app_info">Push app</string>
+    <string name="push_call">Push call</string>
+    <string name="hang_call">Hang up</string>
+    <string name="push_sms"> Push sms</string>
+    <string name="push_failed">Push failed</string>
+    <string name="push_successful">Push successful</string>
+    <string name="temperature_unit">Temperature unit</string>
+    <string name="current_temperature">Current temperature</string>
+    <string name="place">Place</string>
+    <string name="daytime_weather">Daytime weather</string>
+    <string name="night_weather">Night weather</string>
+    <string name="air_quality">Air quality</string>
+    <string name="uv_intensity">UV intensity</string>
+    <string name="moon">Phase of the moon</string>
+    <string name="min_temperature">Minimum temperature</string>
+    <string name="max_temperature">Maximum temperature</string>
+    <string name="sunrise_time">Sunrise time</string>
+    <string name="sunset_time">Sunset time</string>
+    <string name="min_wind_force">Minimum wind force</string>
+    <string name="max_wind_force">Maximum wind force</string>
+    <string name="air_humidity">Air humidity</string>
+    <string name="cloudiness">Cloudiness</string>
+    <string name="add_weather">Add weather</string>
+    <string name="weather_type_clear">Clear</string>
+    <string name="weather_type_cloudy">Cloudy</string>
+    <string name="weather_type_gloomy">Gloomy</string>
+    <string name="weather_type_drizzle">Drizzle</string>
+    <string name="weather_type_moderate_rain">Moderate rain</string>
+    <string name="weather_type_thunderstorm">Thunderstorm</string>
+    <string name="weather_type_heavy_rain">Heavy rain</string>
+    <string name="weather_type_heavy_sleet">Sleet</string>
+    <string name="weather_type_light_snow">Light snow</string>
+    <string name="weather_type_moderate_snow">Moderate snow</string>
+    <string name="weather_type_heavy_snow">Heavy snow</string>
+    <string name="weather_air_excellent">Excellent</string>
+    <string name="weather_air_good">Good</string>
+    <string name="weather_air_bad">Bad</string>
+    <string name="weather_rays_weak">Weak</string>
+    <string name="weather_rays_medium">Medium</string>
+    <string name="weather_rays_strong">Strong</string>
+    <string name="weather_rays_very_strong">Very strong</string>
+    <string name="weather_rays_super_strong">Super strong</string>
+    <string name="weather_moon_new_moon">new_moon</string>
+    <string name="weather_moon_waxing_crescent_moon">Waxing crescent moon</string>
+    <string name="weather_moon_quarter_moon">Quarter moon</string>
+    <string name="weather_moon_half_moon_1">Half moon 1</string>
+    <string name="weather_moon_waxing_gibbous_moon">Waxing gibbous moon</string>
+    <string name="weather_moon_full_moon">Full moon</string>
+    <string name="weather_moon_waning_gibbous_moon">Waning gibbous moon</string>
+    <string name="weather_moon_half_moon_2">Half moon 2</string>
+    <string name="weather_moon_last_quarter_moon">Last quarter moon</string>
+    <string name="weather_moon_waning_crescent_moon">Waning crescent moon</string>
+    <string name="temperature_unit_centigrade">Centigrade</string>
+    <string name="temperature_unit_fahrenheit">Fahrenheit</string>
+    <string name="no_weather">No weather information added</string>
+    <string name="call">Call</string>
+    <string name="unknown_call">Unknown call</string>
+    <string name="sms">SMS</string>
+    <string name="social_contact">Social contact</string>
+    <string name="email">Email</string>
+    <string name="reminder_mode">Reminder mode</string>
+    <string name="common_action_no_action">No action</string>
+    <string name="common_action_one_long_vibration">One long vibration</string>
+    <string name="common_action_one_short_vibration">One_short_vibration</string>
+    <string name="common_action_two_long_vibration">Two long vibration</string>
+    <string name="common_action_two_short_vibration">Two short vibration</string>
+    <string name="common_action_long_vibration">Long vibration</string>
+    <string name="common_action_long_short_vibration">Long short vibration</string>
+    <string name="common_action_one_ring">One ring</string>
+    <string name="common_action_two_ring">Two ring</string>
+    <string name="common_action_ring">Ring</string>
+    <string name="common_action_one_vibration_ring">One vibration ring</string>
+    <string name="common_action_vibration_ring">Vibration ring</string>
+    <string name="SnoozeTime">Snooze time</string>
+    <string name="AlarmClockTime">Alarm time</string>
+    <string name="add_alarm_clock">Add alarm clock</string>
+    <string name="Delete">Delete</string>
+    <string name="edit_alarm_clock">Edit alarm clock</string>
+    <string name="sleep">Sleep</string>
+    <string name="sport">Sport</string>
+    <string name="drinking">Drinking</string>
+    <string name="takeTheMedicine">Take the medicine</string>
+    <string name="meeting">Meeting</string>
+    <string name="custom">Custom</string>
+    <string name="add_schedule">Add schedule</string>
+    <string name="schedule_switch">Schedule switch</string>
+    <string name="schedule_type">Schedule type</string>
+    <string name="schedule_name">Schedule name</string>
+    <string name="remind_time">Remind time</string>
+    <string name="input">Input</string>
+    <string name="edit_schedule">Edit schedule</string>
+    <string name="distance_unit_kilometre">Kilometre</string>
+    <string name="distance_unit_mile">Mile</string>
+    <string name="weight_unit_kilogram">Kilogram</string>
+    <string name="weight_unit_pound">Pound</string>
+    <string name="pressure_switch">Pressure switch</string>
+    <string name="vibration_mode">Vibration mode</string>
+    <string name="vibration">Vibration</string>
+    <string name="vibration_mode_week">Weak</string>
+    <string name="vibration_mode_strong">Strong</string>
+    <string name="vibration_mode_normal">Normal</string>
+    <string name="vibration_mode_not_vibrate">not_vibrate</string>
+    <string name="charging">Charging</string>
+    <string name="normal">normal</string>
+    <string name="FirstLeverTips">Press and hold the right side of the list and drag up and down to adjust the display order</string>
+    <string name="display">display</string>
+    <string name="HomePage">Home</string>
+    <string name="WorkoutState">Workout status</string>
+    <string name="Hided">Hided</string>
+    <string name="system_dial">System dial</string>
+    <string name="other">Other</string>
+    <string name="wechat">Wechat</string>
+    <string name="qq">QQ</string>
+    <string name="twitter">Twitter</string>
+    <string name="messenger">Messenger</string>
+    <string name="hangouts">Hangouts</string>
+    <string name="gmail">Gmail</string>
+    <string name="viber">Viber</string>
+    <string name="snapchat">Snapchat</string>
+    <string name="whatsApp">WhatsApp</string>
+    <string name="instagram">Instagram</string>
+    <string name="linkedin">Linkedin</string>
+    <string name="line">Line</string>
+    <string name="skype">Skype</string>
+    <string name="booking">Booking</string>
+    <string name="airbnb">Airbnb</string>
+    <string name="flipboard">Flipboard</string>
+    <string name="spotify">Spotify</string>
+    <string name="pandora">Pandora</string>
+    <string name="telegram">Telegram</string>
+    <string name="dropbox">Dropbox</string>
+    <string name="waze">Waze</string>
+    <string name="lift">Lift</string>
+    <string name="slack">Slack</string>
+    <string name="shazam">Shazam</string>
+    <string name="deliveroo">Deliveroo</string>
+    <string name="kakaotalk">Kakaotalk</string>
+    <string name="pinterest">Pinterest</string>
+    <string name="tumblr">Tumblr</string>
+    <string name="vk">Vk</string>
+    <string name="youtube">Youtube</string>
+    <string name="outlook">Outlook</string>
+    <string name="facebook">Face book</string>
+    <string name="device_unsupported">The watch is not supported for the time being</string>
+    <string name="duration">Duration</string>
+    <string name="priority_sync">Priority sync</string>
+    <string name="recent_heart_rate">Recent heart rate</string>
+    <string name="recent_sleep">Recent sleep</string>
+    <string name="recent_daily">Recent daily</string>
+    <string name="recent_gps">Recent GPS</string>
+    <string name="recent_movement">Recent movement</string>
+    <string name="recent_blood_oxygen">Recent blood oxygen</string>
+    <string name="recent_pressure">Recent pressure</string>
+    <string name="recent_step_frequency">Recent step frequency</string>
+    <string name="recent_pace">Recent pace</string>
+    <string name="recent_resting_heart_rate">Recent resting heart rate</string>
+    <string name="priority_sync_daily">sport_data_req</string>
+    <string name="priority_sync_sleep">sleep_data_req</string>
+    <string name="priority_sync_heart_rate">hr_data_req</string>
+    <string name="priority_sync_gps">gps_data_req</string>
+    <string name="priority_sync_multi">multi_sports_data_req</string>
+    <string name="priority_sync_blood">blood_oxygen_data_data_req</string>
+    <string name="priority_sync_stress">stress_data_req</string>
+    <string name="priority_sync_step_freq">step_freq_data_req</string>
+    <string name="priority_sync_pace">step_pace_data_req</string>
+    <string name="priority_sync_resting_heart_rate">resting_hr_data_req</string>
+    <string name="indoor_cycling">Indoor cycling</string>
+    <string name="indoor_exercise">Indoor exercise</string>
+    <string name="indoor_running">Indoor running</string>
+    <string name="indoor_walking">Indoor walking</string>
+    <string name="next_period">Next period</string>
+    <string name="outdoor_cycling">Outdoor cycling</string>
+    <string name="outdoor_cross_country">Outdoor cross country</string>
+    <string name="outdoor_hiking">Outdoor hiking</string>
+    <string name="outdoor_mountaineering">Outdoor mountaineering</string>
+    <string name="outdoor_running">Outdoor running</string>
+    <string name="outdoor_walking">Outdoor walking</string>
+    <string name="swimming">Swimming</string>
+    <string name="elliptical_machine">Elliptical machine</string>
+    <string name="yoga">Health yoga</string>
+    <string name="rowing_machine">Rowing machine</string>
+    <string name="firmware_update">Firmware update</string>
+    <string name="agps_update">AGPS update</string>
+    <string name="custom_dial">Custom dial</string>
+    <string name="dial_update">Dial update</string>
+    <string name="ota_failed">OTA failed</string>
+    <string name="ota_success"> OTA success</string>
+    <string name="no_update">No update required</string>
+    <string name="app_sport">App sports</string>
+    <string name="start_sport">Start moving</string>
+    <string name="end_motion">End motion</string>
+    <string name="pause_moving">Pause moving</string>
+    <string name="keep_moving">Keep moving</string>
+    <string name="start_success">Successfully started sports</string>
+    <string name="existing_sports">There is already movement running, please end the movement first</string>
+    <string name="transfer_motion">Transfer motion data to the watch</string>
+    <string name="pace">Pace</string>
+    <string name="resting_heart_rate">Resting heart rate</string>
+    <string name="habit">Habit</string>
+    <string name="sleep_blood_switch">Sleep blood switch</string>
+    <string name="set_sleep_blood">Set sleep blood monitor</string>
+    <string name="stress_switch">Stress switch</string>
+    <string name="time_data_report_switch">Time data report switch</string>
+    <string name="watch_sport">Watch movement</string>
+    <string name="joint_type">Joint type</string>
+    <string name="operation_succeeded">Operation succeeded</string>
+    <string-array name="priority">
+        <item>@string/priority_sync_daily</item>
+        <item>@string/priority_sync_sleep</item>
+        <item>@string/priority_sync_heart_rate</item>
+        <item>@string/priority_sync_gps</item>
+        <item>@string/priority_sync_multi</item>
+        <item>@string/priority_sync_blood</item>
+        <item>@string/priority_sync_stress</item>
+        <item>@string/priority_sync_step_freq</item>
+        <item>@string/priority_sync_pace</item>
+        <item>@string/priority_sync_resting_heart_rate</item>
+    </string-array>
+
+    <string-array name="app_list">
+        <item>@string/other</item>
+        <item>@string/wechat</item>
+        <item>@string/qq</item>
+        <item>@string/facebook</item>
+        <item>@string/twitter</item>
+        <item>@string/messenger</item>
+        <item>@string/hangouts</item>
+        <item>@string/gmail</item>
+        <item>@string/viber</item>
+        <item>@string/snapchat</item>
+        <item>@string/whatsApp</item>
+        <item>@string/instagram</item>
+        <item>@string/linkedin</item>
+        <item>@string/line</item>
+        <item>@string/skype</item>
+        <item>@string/booking</item>
+        <item>@string/airbnb</item>
+        <item>@string/flipboard</item>
+        <item>@string/spotify</item>
+        <item>@string/pandora</item>
+        <item>@string/telegram</item>
+        <item>@string/dropbox</item>
+        <item>@string/waze</item>
+        <item>@string/lift</item>
+        <item>@string/slack</item>
+        <item>@string/shazam</item>
+        <item>@string/deliveroo</item>
+        <item>@string/kakaotalk</item>
+        <item>@string/pinterest</item>
+        <item>@string/tumblr</item>
+        <item>@string/vk</item>
+        <item>@string/youtube</item>
+        <item>@string/outlook</item>
+
+    </string-array>
+    <string-array name="api_list">
+        <item>@string/watch_information</item>
+        <item>@string/user_information</item>
+        <item>@string/sync_time</item>
+        <item>@string/binding</item>
+        <item>@string/screen_brightness</item>
+        <item>@string/rest_screen_time</item>
+        <item>@string/power_information</item>
+        <item>@string/language_information</item>
+        <item>@string/equipment_unit</item>
+        <item>@string/equipment_operation</item>
+        <item>@string/do_not_disturb</item>
+        <!-- <item>@string/sync_hometown_time</item>-->
+        <item>@string/daily_objectives</item>
+        <item>@string/sleep_monitoring</item>
+        <item>@string/heart_rate_monitoring</item>
+        <item>@string/sedentary_monitoring</item>
+        <item>@string/reminder_operation</item>
+        <item>@string/weather_information</item>
+        <item>@string/reminder_switch</item>
+        <item>@string/alarm_clock</item>
+        <item>@string/schedule</item>
+        <item>@string/distance_unit</item>
+        <item>@string/weight_unit</item>
+        <item>@string/calorie_switch</item>
+        <item>@string/bright_screen_switch</item>
+        <item>@string/sync_motion_data</item>
+        <item>@string/combination_information</item>
+        <item>@string/main_menu</item>
+        <item>@string/physiological_period</item>
+        <item>@string/dial_ID</item>
+        <item>@string/push_switch</item>
+        <item>@string/blood_pressure_calibration</item>
+        <item>@string/automatic_monitoring_information</item>
+        <item>@string/commissioning_information</item>
+        <item>@string/Habit_set</item>
+        <item>@string/ota</item>
+        <item>@string/Today_sport_data</item>
+        <item>@string/Add_contact</item>
+        <item>@string/Add_reminder</item>
+        <item>@string/app_sport</item>
+        <item>@string/transfer_motion</item>
+        <item>@string/check</item>
+        <item>@string/sync_motion_data_by_type</item>
+        <item>@string/sleep_blood_switch</item>
+        <item>@string/stress_switch</item>
+        <item>@string/time_data_report_switch</item>
+        <item>@string/vibration_mode</item>
+        <item>@string/watch_sport</item>
+        <item>@string/diff_color_dial</item>
+    </string-array>
+    <string name="watch_information">Watch information</string>
+    <string name="user_information">User information</string>
+    <string name="sync_time">Sync time</string>
+    <string name="binding">Binding</string>
+    <string name="screen_brightness">Screen brightness</string>
+    <string name="rest_screen_time">Rest screen time</string>
+    <string name="power_information">Power information</string>
+    <string name="language_information">Language information</string>
+    <string name="equipment_unit">Equipment unit</string>
+    <string name="equipment_operation">Equipment operation</string>
+    <string name="do_not_disturb">Don\'t disturb</string>
+    <string name="sync_hometown_time">Sync hometown time</string>
+    <string name="daily_objectives">Daily objectives</string>
+    <string name="sleep_monitoring">Sleep monitoring</string>
+    <string name="heart_rate_monitoring">Heart rate monitoring</string>
+    <string name="sedentary_monitoring">Sedentary monitoring</string>
+    <string name="reminder_operation">Info push</string>
+    <string name="weather_information">Weather information</string>
+    <string name="reminder_switch">Reminder switch</string>
+    <string name="alarm_clock">Alarm clock</string>
+    <string name="schedule">Schedule</string>
+    <string name="distance_unit">Distance unit</string>
+    <string name="weight_unit">Weight unit</string>
+    <string name="calorie_switch">Calorie switch</string>
+    <string name="bright_screen_switch">Bright screen switch</string>
+    <string name="sync_motion_data">Sync motion data</string>
+    <string name="combination_information">Combination information</string>
+    <string name="main_menu">Main menu</string>
+    <string name="physiological_period">Physiological period</string>
+    <string name="dial_ID">Dial ID</string>
+    <string name="push_switch">Push switch</string>
+    <string name="blood_pressure_calibration">Blood pressure calibration</string>
+    <string name="automatic_monitoring_information">Automatic monitoring information</string>
+    <string name="commissioning_information">Commissioning information</string>
+    <string name="ota">OTA</string>
+    <string name="gps">Gps</string>
+    <string name="multi_sport">Multi sport</string>
+    <string name="step_freq">Step frequency</string>
+    <string-array name="menu">
+        <item>@string/heart_Rate</item>
+        <item>@string/stress</item>
+        <item>@string/weather</item>
+        <item>@string/music</item>
+        <item>@string/breathe</item>
+        <item>@string/menstrualCycle</item>
+        <item>@string/sleep</item>
+    </string-array>
+    <string-array name="type_sync">
+        <item>@string/Today_steps</item>
+        <item>@string/sleep</item>
+        <item>@string/heart_Rate</item>
+        <item>@string/gps</item>
+        <item>@string/multi_sport</item>
+        <item>@string/blood_oxygen</item>
+        <item>@string/stress</item>
+        <item>@string/step_freq</item>
+        <item>@string/pace</item>
+        <item>@string/resting_heart_rate</item>
+        <item>@string/habit</item>
+    </string-array>
+    <string name="heart_Rate">Heart rate</string>
+    <string name="stress">Stress</string>
+    <string name="weather">Weather</string>
+    <string name="music">Music</string>
+    <string name="breathe">Breathe</string>
+    <string name="menstrualCycle">Menstrual cycle</string>
+    <string name="sync_to_current_time">Sync to current time</string>
+    <string name="Habit_set">Habit setting</string>
+    <string name="Select_period_on">Select period on</string>
+    <string name="Open_all_day">Open all day</string>
+    <string name="Hand_up_switch">Hand up switch</string>
+    <string name="Time_hint">The start time must be less than the end time</string>
+    <string name="Add_habit">ADD HABIT</string>
+    <string name="Habit_type">Type</string>
+    <string name="Color">Color</string>
+    <string name="Habit_time">start time and end time</string>
+    <string name="habit_input_hint">Please enter English letters or numbers</string>
+    <string name="ReminderMethod">Reminder method</string>
+    <string name="Next">Next</string>
+    <string name="Previous">Previous</string>
+    <string name="BlueAddress">BlueAddress</string>
+    <string name="Today_sport_data">Total sports today</string>
+    <string name="Today_steps">Steps</string>
+    <string name="Today_calories">Calories</string>
+    <string name="Today_distances">Distances</string>
+    <string name="Today_duration">Duration</string>
+    <string name="Add_contact">Add contact</string>
+    <string name="Delete_contact">Delete contact</string>
+    <string name="Background">Background</string>
+    <string name="Style">Style</string>
+    <string name="Install_dial">Installing the dial</string>
+    <string name="Create_dial_fail">Failed to generate dial</string>
+    <string name="YC_takepicture">Take picture</string>
+    <string name="YC_Dolen_photo_album">Album</string>
+    <string name="Reminder_switch">Reminder switch</string>
+    <string name="Cup">Cup</string>
+    <string name="Add_reminder">Add reminder</string>
+    <string name="Hand_washing">Hand washing</string>
+    <string name="check_type">Test type</string>
+    <string name="check_switch">Check switch</string>
+    <string name="check">Check</string>
+    <string name="blood_oxygen">Blood oxygen</string>
+    <string name="data_type">Data type</string>
+    <string name="sync_motion_data_by_type">Sync motion data by type</string>
+    <string name="required_bind">Whether binding is required</string>
+    <string name="support_function_list">Support function list query</string>
+    <string name="screen_width">Screen width</string>
+    <string name="screen_height">Screen height</string>
+    <string name="screen_type">Screen type</string>
+    <string name="preview_width">Preview width</string>
+    <string name="preview_height">Preview height</string>
+    <string name="thumbnail_fillet">Thumbnail fillet</string>
+    <string name="SN_supported">Whether SN number is supported</string>
+    <string name="max_dial_size">Maximum dial size</string>
+    <string name="support">Support</string>
+    <string name="not_supported">Unsupported</string>
+    <string name="square_screen">Square screen</string>
+    <string name="circular_screen">Circular screen</string>
+    <string name="supported_languages">Supported languages</string>
+    <string name="start_sit">Sedentary switch</string>
+    <string name="break_switch">Lunch break switch</string>
+    <string name="break_start_hour">Lunch break start time - hour</string>
+    <string name="break_start_minute">Lunch break start time - minute</string>
+    <string name="break_end_hour">End time of lunch break - hour</string>
+    <string name="break_end_minute">End time of lunch break - minute</string>
+    <string name="diff_color_dial">Dial with different color text</string>
+    <string name="generate_pictures">Generate pictures</string>
+    <string name="red">red</string>
+    <string name="green">green</string>
+    <string name="blue">blue</string>
+    <string name="gray">gray</string>
+</resources>

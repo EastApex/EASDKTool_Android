@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/circle_box_width"
+        android:layout_marginEnd="@dimen/circle_box_width"
+        android:layout_marginBottom="@dimen/adapter_recyclerview_margin_top">
+
+
+        <TableRow
+            android:id="@+id/item_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/row_height"
+            android:background="@drawable/dialog_nick_input"
+            android:paddingStart="@dimen/adapter_recyclerview_padding_start"
+            android:paddingEnd="@dimen/adapter_recyclerview_padding_start">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/habit_icon"
+                android:layout_width="@dimen/adapter_alarm_switch_thumb_width"
+                android:layout_height="@dimen/adapter_alarm_switch_thumb_width"
+                android:layout_gravity="center_vertical"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/habit_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/adapter_recyclerview_margin_top"
+                android:ellipsize="end"
+                android:lines="1"
+                android:maxWidth="@dimen/dimen_90"
+                android:textSize="@dimen/adapter_recyclerview_device_name_txt_size" />
+
+            <TextView
+                android:id="@+id/habit_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical|end"
+                android:lines="1"
+                android:paddingStart="@dimen/adapter_recyclerview_margin_top"
+                android:paddingEnd="@dimen/adapter_recyclerview_margin_top"
+                android:textSize="@dimen/adapter_recyclerview_device_name_txt_size" />
+        </TableRow>
+    </TableRow>
+</TableRow>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="@dimen/adapter_recyclerview_padding_start"
+        android:layout_marginEnd="@dimen/adapter_recyclerview_padding_start"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/dialog_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_height"
+            android:gravity="center"
+            android:text="@string/input"
+            android:textSize="@dimen/adapter_recyclerview_device_name_txt_size" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/split_line_height"
+            android:layout_marginStart="@dimen/adapter_recyclerview_margin_top"
+            android:layout_marginEnd="@dimen/adapter_recyclerview_margin_top"
+            android:background="@color/frame_color" />
+
+
+        <EditText
+            android:id="@+id/user_nick"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/adapter_recyclerview_child_high"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="@dimen/adapter_recyclerview_margin_top"
+            android:layout_marginTop="@dimen/adapter_recyclerview_padding_start"
+            android:layout_marginEnd="@dimen/adapter_recyclerview_margin_top"
+            android:background="@drawable/dialog_nick_input"
+            android:gravity="center_vertical"
+            android:inputType="text"
+            android:lines="1"
+            android:singleLine="true"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_height"
+            android:layout_marginTop="@dimen/adapter_recyclerview_margin_top">
+
+            <View
+                android:id="@+id/center_line"
+                android:layout_width="@dimen/split_line_height"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:background="@color/split_line_color" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/cancel"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/center_line"
+                android:gravity="center"
+                android:text="@string/cancel"
+                android:textColor="@color/dialog_cancel_txt_color"
+                android:textSize="@dimen/adapter_recyclerview_device_name_txt_size" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/submit"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@id/center_line"
+                android:gravity="center"
+                android:text="@string/ok"
+                android:textColor="@color/dialog_submit_txt_color"
+                android:textSize="@dimen/adapter_recyclerview_device_name_txt_size" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>
+

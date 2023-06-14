@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/circle_box_width"
+        android:layout_marginRight="@dimen/circle_box_width"
+        android:layout_marginBottom="@dimen/dimen_30"
+        android:background="@drawable/person_info_frame"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_44"
+            android:gravity="center"
+            android:textColor="@color/person_info_title_color"
+            android:textSize="@dimen/adapter_recyclerview_device_name_txt_size" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/split_line_height"
+            android:background="@color/frame_color" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/adapter_recyclerview_margin_top"
+            android:paddingRight="@dimen/adapter_recyclerview_margin_top">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.contrarywind.view.WheelView
+                    android:id="@+id/select_year"
+                    android:layout_width="@dimen/zero"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="@dimen/adapter_recyclerview_padding_start"
+                    android:paddingBottom="@dimen/adapter_recyclerview_padding_start" />
+
+                <com.contrarywind.view.WheelView
+                    android:id="@+id/select_month"
+                    android:layout_width="@dimen/zero"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/adapter_recyclerview_padding_start"
+                    android:layout_weight="1"
+                    android:paddingTop="@dimen/adapter_recyclerview_padding_start"
+                    android:paddingBottom="@dimen/adapter_recyclerview_padding_start" />
+            </TableRow>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_44"
+                android:layout_centerInParent="true"
+                />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/split_line_height"
+            android:background="@color/frame_color" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/row_height">
+
+            <View
+                android:id="@+id/center_line"
+                android:layout_width="@dimen/split_line_height"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:background="@color/frame_color" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/cancel"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/center_line"
+                android:gravity="center"
+                android:text="@string/Previous"
+                android:textSize="@dimen/adapter_recyclerview_device_name_txt_size" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/submit"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@id/center_line"
+                android:gravity="center"
+                android:text="@string/ok"
+                android:textSize="@dimen/adapter_recyclerview_device_name_txt_size" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/row_height"
+    android:layout_marginBottom="@dimen/split_line_height"
+    android:background="@android:color/white"
+    android:paddingStart="@dimen/adapter_recyclerview_margin_top"
+    android:paddingEnd="@dimen/adapter_recyclerview_margin_top">
+
+
+    <TextView
+        android:id="@+id/app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/app_switch"
+        android:ellipsize="end"
+        android:lines="1"
+        android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+    <Switch
+        android:id="@+id/app_switch"
+        android:layout_width="@dimen/adapter_alarm_switch_width"
+        android:layout_height="@dimen/adapter_alarm_switch_high"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:thumb="@drawable/switch_thumb"
+        android:track="@drawable/switch_frame" />
+</RelativeLayout>

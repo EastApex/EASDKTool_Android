@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:overScrollMode="never"
+    android:paddingStart="@dimen/adapter_recyclerview_padding_start"
+    android:paddingEnd="@dimen/adapter_recyclerview_padding_start"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_height">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/tool"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/push_info"
+                android:textSize="@dimen/adapter_recyclerview_device_name_txt_size" />
+        </RelativeLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/face_book_title"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:id="@+id/face_book_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:lines="2"
+            android:text="@string/face_book_title"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/adapter_recyclerview_margin_top"
+            android:gravity="center_vertical"
+            android:text="@string/face_book_content"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:id="@+id/face_book_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:lines="2"
+            android:text="@string/face_book_content"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/push_face_book"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_height"
+            android:layout_marginStart="@dimen/adapter_recyclerview_padding_start"
+            android:layout_marginTop="@dimen/title_height"
+            android:layout_marginEnd="@dimen/adapter_recyclerview_padding_start"
+            android:background="@color/dialog_submit_txt_color"
+            android:gravity="center"
+            android:text="@string/push_app_info"
+            android:textSize="@dimen/adapter_recyclerview_device_name_txt_size" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/adapter_recyclerview_margin_top"
+            android:gravity="center_vertical"
+            android:text="@string/call_title"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:id="@+id/call_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:lines="2"
+            android:text="@string/call_title"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/adapter_recyclerview_margin_top"
+            android:gravity="center_vertical"
+            android:text="@string/call_content"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:id="@+id/call_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:lines="2"
+            android:text="@string/call_content"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/push_call"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_height"
+            android:layout_marginStart="@dimen/adapter_recyclerview_padding_start"
+            android:layout_marginTop="@dimen/title_height"
+            android:layout_marginEnd="@dimen/adapter_recyclerview_padding_start"
+            android:background="@color/dialog_submit_txt_color"
+            android:gravity="center"
+            android:text="@string/push_call"
+            android:textSize="@dimen/adapter_recyclerview_device_name_txt_size" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/adapter_recyclerview_margin_top"
+            android:gravity="center_vertical"
+            android:text="@string/hang_up_title"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:id="@+id/hang_up_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:lines="2"
+            android:text="@string/hang_up_title"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/adapter_recyclerview_margin_top"
+            android:gravity="center_vertical"
+            android:text="@string/hang_up_content"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:id="@+id/hang_up_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:lines="2"
+            android:text="@string/hang_up_content"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/hang_call"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_height"
+            android:layout_marginStart="@dimen/adapter_recyclerview_padding_start"
+            android:layout_marginTop="@dimen/title_height"
+            android:layout_marginEnd="@dimen/adapter_recyclerview_padding_start"
+            android:background="@color/dialog_submit_txt_color"
+            android:gravity="center"
+            android:text="@string/hang_call"
+            android:textSize="@dimen/adapter_recyclerview_device_name_txt_size" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/adapter_recyclerview_margin_top"
+            android:gravity="center_vertical"
+            android:text="@string/sms_title"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:id="@+id/sms_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:lines="2"
+            android:text="@string/sms_title"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/adapter_recyclerview_margin_top"
+            android:gravity="center_vertical"
+            android:text="@string/sms_content"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:id="@+id/sms_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:lines="2"
+            android:text="@string/sms_content"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/push_sms"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_height"
+            android:layout_marginStart="@dimen/adapter_recyclerview_padding_start"
+            android:layout_marginTop="@dimen/title_height"
+            android:layout_marginEnd="@dimen/adapter_recyclerview_padding_start"
+            android:background="@color/dialog_submit_txt_color"
+            android:gravity="center"
+            android:text="@string/push_sms"
+            android:textSize="@dimen/adapter_recyclerview_device_name_txt_size" />
+    </LinearLayout>
+
+</ScrollView>

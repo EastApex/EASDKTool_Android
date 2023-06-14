@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@android:color/white" />
+    <size
+        android:width="@dimen/adapter_alarm_switch_thumb_width"
+        android:height="@dimen/adapter_alarm_switch_thumb_width" />
+    <stroke
+        android:width="@dimen/split_line_height"
+        android:color="@color/check_code_frame_color" />
+    <corners android:radius="@dimen/adapter_recyclerview_device_address_txt_size" />
+</shape>

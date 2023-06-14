@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true">
+        <shape>
+            <corners android:radius="@dimen/adapter_alarm_switch_corner" />
+            <solid android:color="@color/dialog_submit_txt_color" />
+            <stroke android:width="@dimen/split_line_height" android:color="@color/frame_color" />
+        </shape>
+    </item>
+    <item android:state_checked="false">
+        <shape>
+            <corners android:radius="@dimen/adapter_alarm_switch_corner" />
+            <solid android:color="@android:color/white" />
+            <stroke android:width="@dimen/split_line_height" android:color="@color/frame_color" />
+        </shape>
+    </item>
+</selector>
