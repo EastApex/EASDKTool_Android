@@ -19,9 +19,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.apex.bluetooth.callback.DataReportCallback;
 import com.apex.bluetooth.callback.DataResponseCallback;
 import com.apex.bluetooth.callback.MotionDataReportCallback;
+import com.apex.bluetooth.callback.MotionDataResponseCallback;
 import com.apex.bluetooth.core.EABleManager;
 import com.apex.bluetooth.enumeration.CommonFlag;
 import com.apex.bluetooth.enumeration.EABleConnectState;
@@ -30,9 +32,11 @@ import com.apex.bluetooth.listener.EABleConnectListener;
 import com.apex.bluetooth.model.EABleBloodOxygen;
 import com.apex.bluetooth.model.EABleDailyData;
 import com.apex.bluetooth.model.EABleExecutiveResponse;
+import com.apex.bluetooth.model.EABleGeneralSportRespond;
 import com.apex.bluetooth.model.EABleGpsData;
 import com.apex.bluetooth.model.EABleHabitRecord;
 import com.apex.bluetooth.model.EABleHeartData;
+import com.apex.bluetooth.model.EABleMotionHr;
 import com.apex.bluetooth.model.EABleMtu;
 import com.apex.bluetooth.model.EABleMultiData;
 import com.apex.bluetooth.model.EABleMusicControl;
@@ -45,10 +49,12 @@ import com.apex.bluetooth.model.EABleReportMonitorData;
 import com.apex.bluetooth.model.EABleReportSportData;
 import com.apex.bluetooth.model.EABleRestingRateData;
 import com.apex.bluetooth.model.EABleSleepData;
+import com.apex.bluetooth.model.EABleSleepScore;
 import com.apex.bluetooth.model.EABleSocialResponse;
 import com.apex.bluetooth.model.EABleStepFrequencyData;
 import com.apex.bluetooth.model.EABleSwitch;
 import com.apex.bluetooth.model.EABleTimelyData;
+import com.apex.bluetooth.utils.LogData2File;
 import com.apex.bluetooth.utils.LogUtils;
 import com.apex.sdk.R;
 import com.apex.sdk.db.daily.DailyData;
@@ -127,6 +133,9 @@ public class HomeActivity extends AppCompatActivity {
         itemAdapter = new ItemAdapter();
         functionListView.setAdapter(itemAdapter);
         stateText.setText(getString(R.string.not_connected));
+        LogData2File.getInstance().init(this);
+        LogData2File.getInstance().setSaveLog(true);
+        LogData2File.getInstance().setSaveOriginalData(true);
         if (TextUtils.isEmpty(blueAddress)) {
             Toast.makeText(HomeActivity.this, getString(R.string.device_address), Toast.LENGTH_SHORT).show();
         } else {
@@ -134,7 +143,16 @@ public class HomeActivity extends AppCompatActivity {
             if (connectState == EABleConnectState.STATE_IDLE || connectState == EABleConnectState.STATE_DISCONNECT) {
                 try {
                     stateText.setText(getString(R.string.connecting));
-                    EABleManager.getInstance().connectToPeripheral(blueAddress, HomeActivity.this, new DeviceConnectListener(), 128, new DataReportListener(), new MotionListener());
+                    //添加保存到数据库
+                    EABleManager.getInstance().initDB(HomeActivity.this);
+                    EABleManager.getInstance().saveBloodData(true);
+                    EABleManager.getInstance().saveDailyData(true);
+                    EABleManager.getInstance().saveHeartData(true);
+                    EABleManager.getInstance().saveRestingHeartData(true);
+                    EABleManager.getInstance().saveStressData(true);
+                    EABleManager.getInstance().saveMultiData(true);
+                    EABleManager.getInstance().saveSleepData(true);
+                    EABleManager.getInstance().connectToPeripheral(blueAddress, HomeActivity.this, new DeviceConnectListener(), 128, new DataReportListener(), new MotionListener(), false);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -271,6 +289,14 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(new Intent(HomeActivity.this, VibrateModeActivity.class));
                     } else if (getString(R.string.watch_sport).equalsIgnoreCase(apiName)) {
                         startActivity(new Intent(HomeActivity.this, WatchSportActivity.class));
+                    } else if (getString(R.string.physiological_reminder).equalsIgnoreCase(apiName)) {
+                        startActivity(new Intent(HomeActivity.this, PhysiologicalReminder.class));
+                    } else if (getString(R.string.delete_custom_dial).equalsIgnoreCase(apiName)) {
+                        startActivity(new Intent(HomeActivity.this, DeleteDialActivity.class));
+                    } else if (getString(R.string.motion_alarm_heart).equalsIgnoreCase(apiName)) {
+                        startActivity(new Intent(HomeActivity.this, MotionHeartAlarmActivity.class));
+                    } else if (getString(R.string.social_contact).equalsIgnoreCase(apiName)) {
+                        startActivity(new Intent(HomeActivity.this, SosContactActivity.class));
                     } else {
                         Toast.makeText(HomeActivity.this, getString(R.string.unknown), Toast.LENGTH_SHORT).show();
                     }
@@ -621,6 +647,11 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         @Override
+        public void startBTConnect() {
+            Log.e(TAG, "开始连接BT");
+        }
+
+        @Override
         public void mutualFail(int errorCode) {
 
         }
@@ -644,6 +675,7 @@ public class HomeActivity extends AppCompatActivity {
                 }
 
             }
+            replayWatch(3001, mCommon);
 
         }
 
@@ -660,6 +692,7 @@ public class HomeActivity extends AppCompatActivity {
                 }
 
             }
+            replayWatch(3002, mCommon);
 
         }
 
@@ -676,6 +709,7 @@ public class HomeActivity extends AppCompatActivity {
                 }
 
             }
+            replayWatch(3003, mCommon);
         }
 
         @Override
@@ -692,6 +726,7 @@ public class HomeActivity extends AppCompatActivity {
                 }
 
             }
+            replayWatch(3004, mCommon);
         }
 
         @Override
@@ -727,7 +762,7 @@ public class HomeActivity extends AppCompatActivity {
                 }
 
             }
-
+            replayWatch(3005, mCommon);
         }
 
         @Override
@@ -743,6 +778,7 @@ public class HomeActivity extends AppCompatActivity {
                 }
 
             }
+            replayWatch(3006, mCommon);
         }
 
         @Override
@@ -759,6 +795,7 @@ public class HomeActivity extends AppCompatActivity {
                 }
 
             }
+            replayWatch(3007, mCommon);
         }
 
         @Override
@@ -774,6 +811,7 @@ public class HomeActivity extends AppCompatActivity {
                 }
 
             }
+            replayWatch(3008, mCommon);
 
         }
 
@@ -790,7 +828,7 @@ public class HomeActivity extends AppCompatActivity {
                 }
 
             }
-
+            replayWatch(3009, mCommon);
         }
 
         @Override
@@ -806,6 +844,7 @@ public class HomeActivity extends AppCompatActivity {
                 }
 
             }
+            replayWatch(3010, mCommon);
         }
 
         @Override
@@ -815,11 +854,47 @@ public class HomeActivity extends AppCompatActivity {
                     Log.e(TAG, "习惯记录:" + habitList.get(i).toString());
                 }
             }
+            replayWatch(3011, commonFlag);
+        }
+
+        @Override
+        public void sleepScore(List<EABleSleepScore> list, CommonFlag commonFlag) {
+            if (list != null && !list.isEmpty()) {
+                Log.e(TAG, "睡眠得分:" + JSONObject.toJSONString(list));
+            }
+            replayWatch(3012, commonFlag);
+        }
+
+        @Override
+        public void motionHr(List<EABleMotionHr> list, CommonFlag commonFlag) {
+            if (list != null && !list.isEmpty()) {
+                Log.e(TAG, "运动心率:" + JSONObject.toJSONString(list));
+            }
+            replayWatch(3013, commonFlag);
         }
 
         @Override
         public void mutualFail(int errorCode) {
 
+        }
+    }
+
+    private void replayWatch(final int flag, final CommonFlag commonFlag) {
+        EABleGeneralSportRespond eaBleGeneralSportRespond = new EABleGeneralSportRespond();
+        eaBleGeneralSportRespond.setRequest_id(flag);
+        eaBleGeneralSportRespond.setE_common_flag(commonFlag);
+        if (isConnected) {
+            EABleManager.getInstance().motionDataResponse(eaBleGeneralSportRespond, new MotionDataResponseCallback() {
+                @Override
+                public void mutualSuccess() {
+                    LogUtils.i(TAG, "大数据回应成功");
+                }
+
+                @Override
+                public void mutualFail(int errorCode) {
+                    LogUtils.i(TAG, "大数据回应失败,可以尝试再次回应或者重新同步数据");
+                }
+            });
         }
     }
 }

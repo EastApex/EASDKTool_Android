@@ -437,13 +437,17 @@
         <item>@string/app_sport</item>
         <item>@string/transfer_motion</item>
         <item>@string/check</item>
-        <item>@string/sync_motion_data_by_type</item>
+        <!--  <item>@string/sync_motion_data_by_type</item>-->
         <item>@string/sleep_blood_switch</item>
         <item>@string/stress_switch</item>
         <item>@string/time_data_report_switch</item>
         <item>@string/vibration_mode</item>
         <item>@string/watch_sport</item>
         <item>@string/diff_color_dial</item>
+        <item>@string/physiological_reminder</item>
+        <item>@string/delete_custom_dial</item>
+        <item>@string/motion_alarm_heart</item>
+        <item>@string/social_contact</item>
     </string-array>
     <string name="watch_information">Watch information</string>
     <string name="user_information">User information</string>
@@ -576,4 +580,15 @@
     <string name="green">green</string>
     <string name="blue">blue</string>
     <string name="gray">gray</string>
+    <string name="delete_custom_dial">Delete custom dial</string>
+    <string name="motion_alarm_heart">Exercise alarm heart rate</string>
+    <string name="sos_contact">Sos contact</string>
+    <string name="physiological_reminder">Physiological reminder</string>
+    <string name="period_start_reminder">Physiological period start reminder</string>
+    <string name="period_end_reminder">Physiological period end reminder</string>
+    <string name="danger_start_reminder">Reminder for the start of the danger period</string>
+    <string name="danger_end_reminder">Reminder for the end of the danger period</string>
+    <string name="ovulation_reminder">Ovulation reminder</string>
+    <string name="contact_name">Contact name</string>
+    <string name="contact_num">Num</string>
 </resources>

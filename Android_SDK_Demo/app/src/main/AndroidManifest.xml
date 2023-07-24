@@ -199,6 +199,18 @@
         <activity
             android:name=".ui.DiffColorTxtDialActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.PhysiologicalReminder"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.DeleteDialActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.MotionHeartAlarmActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.SosContactActivity"
+            android:screenOrientation="portrait" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

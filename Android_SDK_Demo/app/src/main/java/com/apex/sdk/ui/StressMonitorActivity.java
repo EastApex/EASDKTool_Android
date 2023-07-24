@@ -18,6 +18,7 @@ import com.apex.bluetooth.callback.StressMonitorCallback;
 import com.apex.bluetooth.core.EABleManager;
 import com.apex.bluetooth.enumeration.EABleConnectState;
 import com.apex.bluetooth.enumeration.QueryWatchInfoType;
+import com.apex.bluetooth.model.EABleAutoStressMonitor;
 import com.apex.sdk.R;
 import com.apex.sdk.dialog.SwitchDialog;
 import com.apex.sdk.dialog.WaitingDialog;
@@ -34,7 +35,7 @@ public class StressMonitorActivity extends AppCompatActivity {
     @BindView(R.id.rest_screen)
     TextView switchText;
     SwitchDialog switchDialog;
-    int sw;
+    EABleAutoStressMonitor eaBleAutoStressMonitor;
     private Handler mHandler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -45,7 +46,7 @@ public class StressMonitorActivity extends AppCompatActivity {
                         waitingDialog.dismiss();
                     }
                 }
-                if (sw == 1) {
+                if (eaBleAutoStressMonitor.getSw() > 0) {
                     switchText.setText(getString(R.string.switch_state_on));
                 } else {
                     switchText.setText(getString(R.string.switch_state_close));
@@ -96,8 +97,8 @@ public class StressMonitorActivity extends AppCompatActivity {
             waitingDialog.show();
             EABleManager.getInstance().queryWatchInfo(QueryWatchInfoType.stress_monitor, new StressMonitorCallback() {
                 @Override
-                public void stressSwitch(int s) {
-                    sw = s;
+                public void stressSwitch(EABleAutoStressMonitor autoStressMonitor) {
+                    eaBleAutoStressMonitor = autoStressMonitor;
                     if (mHandler != null) {
                         mHandler.sendEmptyMessage(0x40);
                     }
@@ -121,9 +122,9 @@ public class StressMonitorActivity extends AppCompatActivity {
                         public void selectData(String sex) {
                             switchText.setText(sex);
                             if (sex.equalsIgnoreCase(getString(R.string.switch_state_on))) {
-                                sw = 1;
+                                eaBleAutoStressMonitor.setSw(1);
                             } else {
-                                sw = 0;
+                                eaBleAutoStressMonitor.setSw(0);
                             }
                             if (EABleManager.getInstance().getDeviceConnectState() == EABleConnectState.STATE_CONNECTED) {
                                 if (waitingDialog == null) {
@@ -132,7 +133,7 @@ public class StressMonitorActivity extends AppCompatActivity {
                                 if (!waitingDialog.isShowing()) {
                                     waitingDialog.show();
                                 }
-                                EABleManager.getInstance().startStressMonitor(sw, new GeneralCallback() {
+                                EABleManager.getInstance().startStressMonitor(eaBleAutoStressMonitor, new GeneralCallback() {
                                     @Override
                                     public void result(boolean success) {
                                         if (mHandler != null) {
@@ -179,4 +180,5 @@ public class StressMonitorActivity extends AppCompatActivity {
         }
         super.onDestroy();
     }
+
 }

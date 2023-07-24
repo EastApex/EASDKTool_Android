@@ -17,17 +17,17 @@ public class DemoApp extends Application {
     public void onCreate() {
         super.onCreate();
         LogUtils.setShowLog(true);
-        initGreenDaoDb();
-        LogData2File.getInstance().init(this);
-        LogData2File.getInstance().setSaveLog(true);
-        LogData2File.getInstance().setSaveOriginalData(true);
+      //  initGreenDaoDb();
+      //  LogData2File.getInstance().init(this);
+      //  LogData2File.getInstance().setSaveLog(true);
+      //  LogData2File.getInstance().setSaveOriginalData(true);
     }
 
     private void initGreenDaoDb() {
-        DaoMaster.DevOpenHelper devOpenHelper = new DaoMaster.DevOpenHelper(this, "sport.db");
-        SQLiteDatabase db = devOpenHelper.getWritableDatabase();
+      //  DaoMaster.DevOpenHelper devOpenHelper = new DaoMaster.DevOpenHelper(this, "sport.db");
+      //  SQLiteDatabase db = devOpenHelper.getWritableDatabase();
         // db.disableWriteAheadLogging();
-        DaoMaster daoMaster = new DaoMaster(db);
-        mSession = daoMaster.newSession(IdentityScopeType.None);
+      //  DaoMaster daoMaster = new DaoMaster(db);
+      //  mSession = daoMaster.newSession(IdentityScopeType.None);
     }
 }

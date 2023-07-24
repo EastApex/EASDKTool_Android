@@ -81,82 +81,84 @@ public class SyncMonitorActivity extends AppCompatActivity {
                 }
                 Toast.makeText(SyncMonitorActivity.this, getString(R.string.failed_to_get_data), Toast.LENGTH_SHORT).show();
             } else if (msg.what == 0x42) {
-                BloodData bloodData = GreenDaoManager.getInstance().queryLastBlood();
-                if (bloodData != null) {
-                    bloodText.setText(bloodData.getBlood_oxygen_value() + "");
-                }
-                HeartData heartData = GreenDaoManager.getInstance().queryLastHeart();
-                if (heartData != null) {
-                    heartText.setText(heartData.hr_value + "");
-                }
-                PressData pressData = GreenDaoManager.getInstance().questLastPressure();
-                if (pressData != null) {
-                    pressureText.setText(pressData.getPress_value() + "");
-                }
-                RestingRateData restingRateData = GreenDaoManager.getInstance().queryLastRestingRate();
-                if (restingRateData != null) {
-                    restingText.setText(restingRateData.getHeartRate() + "");
-                }
-                MultiData multiData = GreenDaoManager.getInstance().queryLastMulti();
+                /**
+                 BloodData bloodData = GreenDaoManager.getInstance().queryLastBlood();
+                 if (bloodData != null) {
+                 bloodText.setText(bloodData.getBlood_oxygen_value() + "");
+                 }
+                 HeartData heartData = GreenDaoManager.getInstance().queryLastHeart();
+                 if (heartData != null) {
+                 heartText.setText(heartData.hr_value + "");
+                 }
+                 PressData pressData = GreenDaoManager.getInstance().questLastPressure();
+                 if (pressData != null) {
+                 pressureText.setText(pressData.getPress_value() + "");
+                 }
+                 RestingRateData restingRateData = GreenDaoManager.getInstance().queryLastRestingRate();
+                 if (restingRateData != null) {
+                 restingText.setText(restingRateData.getHeartRate() + "");
+                 }
+                 MultiData multiData = GreenDaoManager.getInstance().queryLastMulti();
 
-                if (multiData != null) {
-                    int type = multiData.getE_type();
-                    if (type == 1) {
-                        movementText.setText(getString(R.string.outdoor_walking));
-                    } else if (type == 2) {
-                        movementText.setText(getString(R.string.outdoor_running));
-                    } else if (type == 3) {
-                        movementText.setText(getString(R.string.outdoor_hiking));
-                    } else if (type == 4) {
-                        movementText.setText(getString(R.string.outdoor_mountaineering));
-                    } else if (type == 5) {
-                        movementText.setText(getString(R.string.outdoor_cross_country));
-                    } else if (type == 6) {
-                        movementText.setText(getString(R.string.outdoor_cycling));
-                    } else if (type == 7) {
-                        movementText.setText(getString(R.string.swimming));
-                    } else if (type == 8) {
-                        movementText.setText(getString(R.string.indoor_walking));
-                    } else if (type == 9) {
-                        movementText.setText(getString(R.string.indoor_running));
-                    } else if (type == 10) {
-                        movementText.setText(getString(R.string.indoor_exercise));
-                    } else if (type == 11) {
-                        movementText.setText(getString(R.string.indoor_cycling));
-                    } else if (type == 12) {
-                        movementText.setText(getString(R.string.elliptical_machine));
-                    } else if (type == 13) {
-                        movementText.setText(getString(R.string.yoga));
-                    } else if (type == 14) {
-                        movementText.setText(getString(R.string.rowing_machine));
-                    }
-                }
-                int calorie = 0, distance = 0, steps = 0;
-                DailyData dailyData = GreenDaoManager.getInstance().queryLastSport();
-                if (dailyData != null) {
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.setTimeInMillis(dailyData.getCurrentTime() * 1000);
-                    calendar.set(Calendar.HOUR, 0);
-                    calendar.set(Calendar.MINUTE, 0);
-                    calendar.set(Calendar.SECOND, 0);
-                    calendar.set(Calendar.MILLISECOND, 0);
-                    long startTime = calendar.getTimeInMillis();
-                    calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH) + 1);
-                    long endTime = calendar.getTimeInMillis() - 1;
-                    List<DailyData> dataList = GreenDaoManager.getInstance().batchQuerySport(startTime / 1000, endTime / 1000);
+                 if (multiData != null) {
+                 int type = multiData.getE_type();
+                 if (type == 1) {
+                 movementText.setText(getString(R.string.outdoor_walking));
+                 } else if (type == 2) {
+                 movementText.setText(getString(R.string.outdoor_running));
+                 } else if (type == 3) {
+                 movementText.setText(getString(R.string.outdoor_hiking));
+                 } else if (type == 4) {
+                 movementText.setText(getString(R.string.outdoor_mountaineering));
+                 } else if (type == 5) {
+                 movementText.setText(getString(R.string.outdoor_cross_country));
+                 } else if (type == 6) {
+                 movementText.setText(getString(R.string.outdoor_cycling));
+                 } else if (type == 7) {
+                 movementText.setText(getString(R.string.swimming));
+                 } else if (type == 8) {
+                 movementText.setText(getString(R.string.indoor_walking));
+                 } else if (type == 9) {
+                 movementText.setText(getString(R.string.indoor_running));
+                 } else if (type == 10) {
+                 movementText.setText(getString(R.string.indoor_exercise));
+                 } else if (type == 11) {
+                 movementText.setText(getString(R.string.indoor_cycling));
+                 } else if (type == 12) {
+                 movementText.setText(getString(R.string.elliptical_machine));
+                 } else if (type == 13) {
+                 movementText.setText(getString(R.string.yoga));
+                 } else if (type == 14) {
+                 movementText.setText(getString(R.string.rowing_machine));
+                 }
+                 }
+                 int calorie = 0, distance = 0, steps = 0;
+                 DailyData dailyData = GreenDaoManager.getInstance().queryLastSport();
+                 if (dailyData != null) {
+                 Calendar calendar = Calendar.getInstance();
+                 calendar.setTimeInMillis(dailyData.getCurrentTime() * 1000);
+                 calendar.set(Calendar.HOUR, 0);
+                 calendar.set(Calendar.MINUTE, 0);
+                 calendar.set(Calendar.SECOND, 0);
+                 calendar.set(Calendar.MILLISECOND, 0);
+                 long startTime = calendar.getTimeInMillis();
+                 calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH) + 1);
+                 long endTime = calendar.getTimeInMillis() - 1;
+                 List<DailyData> dataList = GreenDaoManager.getInstance().batchQuerySport(startTime / 1000, endTime / 1000);
 
-                    if (dataList != null && !dataList.isEmpty()) {
-                        for (int i = 0; i < dataList.size(); i++) {
-                            calorie += dataList.get(i).getCalorie();
-                            distance += dataList.get(i).getDistance();
-                            steps += dataList.get(i).getSteps();
-                        }
+                 if (dataList != null && !dataList.isEmpty()) {
+                 for (int i = 0; i < dataList.size(); i++) {
+                 calorie += dataList.get(i).getCalorie();
+                 distance += dataList.get(i).getDistance();
+                 steps += dataList.get(i).getSteps();
+                 }
 
-                    }
-                }
-                calorieText.setText(calorie + "");
-                distanceText.setText(distance + "");
-                stepsText.setText(steps + "");
+                 }
+                 }
+                 calorieText.setText(calorie + "");
+                 distanceText.setText(distance + "");
+                 stepsText.setText(steps + "");
+                 */
             }
         }
     };
