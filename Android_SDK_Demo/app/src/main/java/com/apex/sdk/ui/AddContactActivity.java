@@ -62,7 +62,7 @@ public class AddContactActivity extends AppCompatActivity {
                         if (eaBleContactList.size() <= 10) {
                             EABleManager.getInstance().addBookList(eaBleContactList, 0, new GeneralCallback() {
                                 @Override
-                                public void result(boolean success) {
+                                public void result(boolean success,int reason) {
                                     Log.e(TAG, "联系人添加成功");
                                 }
 
@@ -83,11 +83,11 @@ public class AddContactActivity extends AppCompatActivity {
                             }
                             EABleManager.getInstance().addBookList(firstContact, 0, new GeneralCallback() {
                                 @Override
-                                public void result(boolean success) {
+                                public void result(boolean success,int reason) {
                                     if (success) {
                                         EABleManager.getInstance().addBookList(secondContact, 1, new GeneralCallback() {
                                             @Override
-                                            public void result(boolean success) {
+                                            public void result(boolean success,int reason) {
 
                                             }
 
@@ -115,7 +115,7 @@ public class AddContactActivity extends AppCompatActivity {
                 List<EABleContact> eaBleContactList = new ArrayList<>();
                 EABleManager.getInstance().addBookList(eaBleContactList, 0, new GeneralCallback() {
                     @Override
-                    public void result(boolean success) {
+                    public void result(boolean success,int reason) {
 
                     }
 

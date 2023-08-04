@@ -19,6 +19,7 @@
     <dimen name="dimen_30">30dp</dimen>
     <dimen name="dimen_50">50dp</dimen>
     <dimen name="dimen_18">18dp</dimen>
+    <dimen name="dimen_212">212dp</dimen>
 
     <dimen name="adapter_alarm_switch_high">22dp</dimen>
     <dimen name="adapter_alarm_switch_thumb_width">24dp</dimen>

@@ -381,7 +381,7 @@ public class RemindActivity extends AppCompatActivity {
                                 }
                                 EABleManager.getInstance().setAncsSwitch(eaBleAncsSw, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x42);
                                         }
@@ -438,7 +438,7 @@ public class RemindActivity extends AppCompatActivity {
                                 }
                                 EABleManager.getInstance().setAncsSwitch(eaBleAncsSw, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x44);
                                         }

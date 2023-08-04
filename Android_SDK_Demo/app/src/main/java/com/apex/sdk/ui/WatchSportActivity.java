@@ -121,7 +121,7 @@ public class WatchSportActivity extends AppCompatActivity {
                     }
                     EABleManager.getInstance().startAppScreenSport(eaBleAppScreenSport, new GeneralCallback() {
                         @Override
-                        public void result(boolean success) {
+                        public void result(boolean success,int reason) {
                             if (mHandler != null) {
                                 Message message = new Message();
                                 message.what = 0x41;
@@ -160,7 +160,7 @@ public class WatchSportActivity extends AppCompatActivity {
                         }
                         EABleManager.getInstance().startAppScreenSport(eaBleAppScreenSport, new GeneralCallback() {
                             @Override
-                            public void result(boolean success) {
+                            public void result(boolean success,int reason) {
                                 if (mHandler != null) {
                                     Message message = new Message();
                                     message.what = 0x41;
@@ -199,7 +199,7 @@ public class WatchSportActivity extends AppCompatActivity {
                     }
                     EABleManager.getInstance().startAppScreenSport(eaBleAppScreenSport, new GeneralCallback() {
                         @Override
-                        public void result(boolean success) {
+                        public void result(boolean success,int reason) {
                             if (mHandler != null) {
                                 Message message = new Message();
                                 message.what = 0x41;
@@ -237,7 +237,7 @@ public class WatchSportActivity extends AppCompatActivity {
                     }
                     EABleManager.getInstance().startAppScreenSport(eaBleAppScreenSport, new GeneralCallback() {
                         @Override
-                        public void result(boolean success) {
+                        public void result(boolean success,int reason) {
                             if (mHandler != null) {
                                 Message message = new Message();
                                 message.what = 0x41;

@@ -278,7 +278,7 @@ public class SyncTimeActivity extends AppCompatActivity {
                                 tempYear = sex;
                                 EABleManager.getInstance().setTimeSync(eaBleSyncTime, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x42);
                                         }
@@ -334,7 +334,7 @@ public class SyncTimeActivity extends AppCompatActivity {
                                 tempMonth = sex;
                                 EABleManager.getInstance().setTimeSync(eaBleSyncTime, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x44);
                                         }
@@ -390,7 +390,7 @@ public class SyncTimeActivity extends AppCompatActivity {
                                 tempDay = sex;
                                 EABleManager.getInstance().setTimeSync(eaBleSyncTime, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x45);
                                         }
@@ -446,7 +446,7 @@ public class SyncTimeActivity extends AppCompatActivity {
                                 tempHour = sex;
                                 EABleManager.getInstance().setTimeSync(eaBleSyncTime, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x46);
                                         }
@@ -502,7 +502,7 @@ public class SyncTimeActivity extends AppCompatActivity {
                                 tempMinute = sex;
                                 EABleManager.getInstance().setTimeSync(eaBleSyncTime, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x47);
                                         }
@@ -558,7 +558,7 @@ public class SyncTimeActivity extends AppCompatActivity {
                                 tempSecond = sex;
                                 EABleManager.getInstance().setTimeSync(eaBleSyncTime, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x48);
                                         }
@@ -618,7 +618,7 @@ public class SyncTimeActivity extends AppCompatActivity {
                                 tempHourSystem = sex;
                                 EABleManager.getInstance().setTimeSync(eaBleSyncTime, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x49);
                                         }
@@ -674,7 +674,7 @@ public class SyncTimeActivity extends AppCompatActivity {
                                 tempCurrentHour = sex;
                                 EABleManager.getInstance().setTimeSync(eaBleSyncTime, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x4A);
                                         }
@@ -730,7 +730,7 @@ public class SyncTimeActivity extends AppCompatActivity {
                                 tempCurrentMinute = sex;
                                 EABleManager.getInstance().setTimeSync(eaBleSyncTime, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x4B);
                                         }
@@ -792,7 +792,7 @@ public class SyncTimeActivity extends AppCompatActivity {
                                 tempZone = sex;
                                 EABleManager.getInstance().setTimeSync(eaBleSyncTime, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x4C);
                                         }
@@ -852,7 +852,7 @@ public class SyncTimeActivity extends AppCompatActivity {
                                 tempMode = sex;
                                 EABleManager.getInstance().setTimeSync(eaBleSyncTime, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x4D);
                                         }
@@ -905,7 +905,7 @@ public class SyncTimeActivity extends AppCompatActivity {
                     eaBleSyncTime.setE_hour_system(EABleSyncTime.HourSystem.hour_24);
                     EABleManager.getInstance().setTimeSync(eaBleSyncTime, new GeneralCallback() {
                         @Override
-                        public void result(boolean success) {
+                        public void result(boolean success,int reason) {
                             if (mHandler != null) {
                                 mHandler.sendEmptyMessage(0x4D);
                             }

@@ -163,80 +163,21 @@ public class PeriodActivity extends AppCompatActivity {
                         waitingDialog.show();
                     }
                     Calendar calendar = Calendar.getInstance();
-                    calendar.set(Calendar.DAY_OF_MONTH,calendar.get(Calendar.DAY_OF_MONTH)-5);
+                    calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH) - 5);
                     calendar.set(Calendar.HOUR_OF_DAY, 0);
                     calendar.set(Calendar.MINUTE, 0);
                     calendar.set(Calendar.SECOND, 0);
                     calendar.set(Calendar.MILLISECOND, 0);
                     long periodStartTime = calendar.getTimeInMillis();
-                    int keepTime=5;
-                    int cycleTime=30;
-                  EABlePhysiologyData eaBlePhysiologyData=  new EABlePhysiologyData();
-                  eaBlePhysiologyData.setCycleTime(cycleTime);
-                  eaBlePhysiologyData.setKeepTime(keepTime);
-                  eaBlePhysiologyData.setStartTime(periodStartTime);
-                  EABleManager.getInstance().setMenstrualCycle(eaBlePhysiologyData, new GeneralCallback() {
-                      @Override
-                      public void result(boolean success) {
-                          if (mHandler != null) {
-                              mHandler.sendEmptyMessage(0x42);
-                          }
-                      }
-
-                      @Override
-                      public void mutualFail(int errorCode) {
-                          if (mHandler != null) {
-                              mHandler.sendEmptyMessage(0x43);
-                          }
-                      }
-                  });
-                    /**
-                    Log.e(TAG, "开始时间戳:" + periodStartTime);
-                    calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH) + 7);
-                    long periodEndTime = calendar.getTimeInMillis();
-                    calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH) + 2);
-                    long dangerousStartTime = calendar.getTimeInMillis();
-                    calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH) + 9);
-                    long dangerousEndTime = calendar.getTimeInMillis();
-                    EABlePeriod eaBlePeriod = new EABlePeriod();
-                    List<EABlePeriod.EABlePeriodData> periodDataList = new ArrayList<>();
-                    eaBlePeriod.setDataList(periodDataList);
-                    for (int i = 0; i < 28; i++) {
-                        EABlePeriod.EABlePeriodData eaBlePeriodData = new EABlePeriod.EABlePeriodData();
-                        calendar.clear();
-                        calendar.setTimeInMillis(periodStartTime);
-                        calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH) + i);
-                        long currentTime = calendar.getTimeInMillis();
-                        if (currentTime < periodEndTime) {
-                            eaBlePeriodData.setPeriodType(EABlePeriod.PeriodType.menstrual);
-                            eaBlePeriodData.setDays(i + 1);
-                            LogUtils.e(TAG, "经期第:" + (i + 1) + "天");
-                            if (dangerousStartTime <= periodEndTime) {
-                                dangerousStartTime = periodEndTime;
-                            }
-                        } else if (currentTime >= periodEndTime && currentTime < dangerousStartTime) {
-                            eaBlePeriodData.setPeriodType(EABlePeriod.PeriodType.safety_period_1);
-                            eaBlePeriodData.setDays((int) ((dangerousStartTime - currentTime) / 1000 / 3600 / 24));
-                            LogUtils.e(TAG, "第一安全期,第:" + ((dangerousStartTime - currentTime) / 1000 / 3600 / 24) + "天");
-                        } else if (currentTime >= dangerousStartTime && currentTime < dangerousEndTime) {
-                            eaBlePeriodData.setPeriodType(EABlePeriod.PeriodType.ovulation);
-                            eaBlePeriodData.setDays((int) ((currentTime - dangerousStartTime) / 1000 / 3600 / 24));
-                            LogUtils.e(TAG, "危险期,第:" + ((currentTime - dangerousStartTime) / 1000 / 3600 / 24) + "天");
-                        } else if (currentTime >= dangerousEndTime) {
-                            eaBlePeriodData.setPeriodType(EABlePeriod.PeriodType.safety_period_2);
-                            calendar.clear();
-                            calendar.setTimeInMillis(periodStartTime);
-                            calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH) + 28);
-                            eaBlePeriodData.setDays((int) ((calendar.getTimeInMillis() - currentTime) / 24 / 3600 / 1000));
-                            LogUtils.e(TAG, "第二安全期,第:" + ((calendar.getTimeInMillis() - currentTime) / 24 / 3600 / 1000) + "天");
-                        }
-                        eaBlePeriodData.setTime_stamp(currentTime / 1000);
-                        periodDataList.add(eaBlePeriodData);
-
-                    }
-                    EABleManager.getInstance().setMenstrualCycle(eaBlePeriod, new GeneralCallback() {
+                    int keepTime = 5;
+                    int cycleTime = 30;
+                    EABlePhysiologyData eaBlePhysiologyData = new EABlePhysiologyData();
+                    eaBlePhysiologyData.setCycleTime(cycleTime);
+                    eaBlePhysiologyData.setKeepTime(keepTime);
+                    eaBlePhysiologyData.setStartTime(periodStartTime);
+                    EABleManager.getInstance().setMenstrualCycle(eaBlePhysiologyData, false, new GeneralCallback() {
                         @Override
-                        public void result(boolean success) {
+                        public void result(boolean success, int reason) {
                             if (mHandler != null) {
                                 mHandler.sendEmptyMessage(0x42);
                             }
@@ -248,6 +189,63 @@ public class PeriodActivity extends AppCompatActivity {
                                 mHandler.sendEmptyMessage(0x43);
                             }
                         }
+                    });
+                    /**
+                     Log.e(TAG, "开始时间戳:" + periodStartTime);
+                     calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH) + 7);
+                     long periodEndTime = calendar.getTimeInMillis();
+                     calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH) + 2);
+                     long dangerousStartTime = calendar.getTimeInMillis();
+                     calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH) + 9);
+                     long dangerousEndTime = calendar.getTimeInMillis();
+                     EABlePeriod eaBlePeriod = new EABlePeriod();
+                     List<EABlePeriod.EABlePeriodData> periodDataList = new ArrayList<>();
+                     eaBlePeriod.setDataList(periodDataList);
+                     for (int i = 0; i < 28; i++) {
+                     EABlePeriod.EABlePeriodData eaBlePeriodData = new EABlePeriod.EABlePeriodData();
+                     calendar.clear();
+                     calendar.setTimeInMillis(periodStartTime);
+                     calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH) + i);
+                     long currentTime = calendar.getTimeInMillis();
+                     if (currentTime < periodEndTime) {
+                     eaBlePeriodData.setPeriodType(EABlePeriod.PeriodType.menstrual);
+                     eaBlePeriodData.setDays(i + 1);
+                     LogUtils.e(TAG, "经期第:" + (i + 1) + "天");
+                     if (dangerousStartTime <= periodEndTime) {
+                     dangerousStartTime = periodEndTime;
+                     }
+                     } else if (currentTime >= periodEndTime && currentTime < dangerousStartTime) {
+                     eaBlePeriodData.setPeriodType(EABlePeriod.PeriodType.safety_period_1);
+                     eaBlePeriodData.setDays((int) ((dangerousStartTime - currentTime) / 1000 / 3600 / 24));
+                     LogUtils.e(TAG, "第一安全期,第:" + ((dangerousStartTime - currentTime) / 1000 / 3600 / 24) + "天");
+                     } else if (currentTime >= dangerousStartTime && currentTime < dangerousEndTime) {
+                     eaBlePeriodData.setPeriodType(EABlePeriod.PeriodType.ovulation);
+                     eaBlePeriodData.setDays((int) ((currentTime - dangerousStartTime) / 1000 / 3600 / 24));
+                     LogUtils.e(TAG, "危险期,第:" + ((currentTime - dangerousStartTime) / 1000 / 3600 / 24) + "天");
+                     } else if (currentTime >= dangerousEndTime) {
+                     eaBlePeriodData.setPeriodType(EABlePeriod.PeriodType.safety_period_2);
+                     calendar.clear();
+                     calendar.setTimeInMillis(periodStartTime);
+                     calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH) + 28);
+                     eaBlePeriodData.setDays((int) ((calendar.getTimeInMillis() - currentTime) / 24 / 3600 / 1000));
+                     LogUtils.e(TAG, "第二安全期,第:" + ((calendar.getTimeInMillis() - currentTime) / 24 / 3600 / 1000) + "天");
+                     }
+                     eaBlePeriodData.setTime_stamp(currentTime / 1000);
+                     periodDataList.add(eaBlePeriodData);
+
+                     }
+                     EABleManager.getInstance().setMenstrualCycle(eaBlePeriod, new GeneralCallback() {
+                    @Override public void result(boolean success) {
+                    if (mHandler != null) {
+                    mHandler.sendEmptyMessage(0x42);
+                    }
+                    }
+
+                    @Override public void mutualFail(int errorCode) {
+                    if (mHandler != null) {
+                    mHandler.sendEmptyMessage(0x43);
+                    }
+                    }
                     });
                      */
                 }

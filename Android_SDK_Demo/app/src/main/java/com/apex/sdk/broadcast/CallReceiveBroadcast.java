@@ -45,7 +45,7 @@ public class CallReceiveBroadcast extends BroadcastReceiver {
                         eaBleSocialContact.setE_ops(EABleSocialContact.SocialContactOps.del);
                         EABleManager.getInstance().pushInfo2Watch(eaBleSocialContact, new GeneralCallback() {
                             @Override
-                            public void result(boolean success) {
+                            public void result(boolean success,int reason) {
                                 Log.e(TAG, "挂断发送成功");
                             }
 
@@ -67,7 +67,7 @@ public class CallReceiveBroadcast extends BroadcastReceiver {
                             if (EABleManager.getInstance().getDeviceConnectState() == EABleConnectState.STATE_CONNECTED && eaBleSocialContact3 != null) {
                                 EABleManager.getInstance().pushInfo2Watch(eaBleSocialContact3, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
 
                                     }
 
@@ -108,7 +108,7 @@ public class CallReceiveBroadcast extends BroadcastReceiver {
                         }
                         EABleManager.getInstance().pushInfo2Watch(eaBleSocialContact2, new GeneralCallback() {
                             @Override
-                            public void result(boolean success) {
+                            public void result(boolean success,int reason) {
                                 Log.e(TAG, "响铃发送成功");
                             }
 
@@ -132,7 +132,7 @@ public class CallReceiveBroadcast extends BroadcastReceiver {
                         eaBleSocialContact1.setE_ops(EABleSocialContact.SocialContactOps.del);
                         EABleManager.getInstance().pushInfo2Watch(eaBleSocialContact1, new GeneralCallback() {
                             @Override
-                            public void result(boolean success) {
+                            public void result(boolean success,int reason) {
                                 Log.e(TAG, "接听发送成功");
                             }
 

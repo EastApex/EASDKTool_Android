@@ -1,7 +1,10 @@
 package com.apex.sdk;
 
 import android.app.Application;
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+
+import androidx.multidex.MultiDex;
 
 import com.apex.bluetooth.utils.LogData2File;
 import com.apex.bluetooth.utils.LogUtils;
@@ -11,7 +14,7 @@ import com.greendao.gen.DaoSession;
 import org.greenrobot.greendao.identityscope.IdentityScopeType;
 
 public class DemoApp extends Application {
-    public static DaoSession mSession;
+   // public static DaoSession mSession;
 
     @Override
     public void onCreate() {
@@ -29,5 +32,11 @@ public class DemoApp extends Application {
         // db.disableWriteAheadLogging();
       //  DaoMaster daoMaster = new DaoMaster(db);
       //  mSession = daoMaster.newSession(IdentityScopeType.None);
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 }

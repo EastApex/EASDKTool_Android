@@ -188,7 +188,7 @@ public class SyncHomeTimeActivity extends AppCompatActivity {
                                 tempCurrentHour = sex;
                                 EABleManager.getInstance().setHomeTimeZone(eaBleHomeTimeZone, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x42);
                                         }
@@ -240,7 +240,7 @@ public class SyncHomeTimeActivity extends AppCompatActivity {
                                 tempCurrentMinute = sex;
                                 EABleManager.getInstance().setHomeTimeZone(eaBleHomeTimeZone, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x44);
                                         }
@@ -298,7 +298,7 @@ public class SyncHomeTimeActivity extends AppCompatActivity {
                                 tempZone = sex;
                                 EABleManager.getInstance().setHomeTimeZone(eaBleHomeTimeZone, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x45);
                                         }

@@ -98,7 +98,7 @@ public class AppSports extends AppCompatActivity {
                     }
                     EABleManager.getInstance().startAppSport(eaBleStartAppSports, new GeneralCallback() {
                         @Override
-                        public void result(boolean success) {
+                        public void result(boolean success,int reason) {
                             Message message = new Message();
                             message.what = 0x41;
                             message.obj = success;
@@ -134,7 +134,7 @@ public class AppSports extends AppCompatActivity {
                     }
                     EABleManager.getInstance().startAppSport(eaBleStartAppSports, new GeneralCallback() {
                         @Override
-                        public void result(boolean success) {
+                        public void result(boolean success,int reason) {
                             Message message = new Message();
                             message.what = 0x43;
                             message.obj = success;
@@ -170,7 +170,7 @@ public class AppSports extends AppCompatActivity {
                     }
                     EABleManager.getInstance().startAppSport(eaBleStartAppSports, new GeneralCallback() {
                         @Override
-                        public void result(boolean success) {
+                        public void result(boolean success,int reason) {
                             Message message = new Message();
                             message.what = 0x44;
                             message.obj = success;

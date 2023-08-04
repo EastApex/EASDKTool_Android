@@ -121,7 +121,7 @@ public class DeviceActionActivity extends AppCompatActivity {
                                 }
                                 EABleManager.getInstance().setDeviceOps(eaBleDev, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x42);
                                         }

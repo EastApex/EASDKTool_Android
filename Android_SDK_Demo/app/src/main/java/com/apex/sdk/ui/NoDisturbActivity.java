@@ -173,7 +173,7 @@ public class NoDisturbActivity extends AppCompatActivity {
                                 }
                                 EABleManager.getInstance().setNotDisturb(eaBleNotDisturb, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x42);
                                         }
@@ -224,7 +224,7 @@ public class NoDisturbActivity extends AppCompatActivity {
                                 }
                                 EABleManager.getInstance().setNotDisturb(eaBleNotDisturb, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x44);
                                         }
@@ -273,7 +273,7 @@ public class NoDisturbActivity extends AppCompatActivity {
                                 }
                                 EABleManager.getInstance().setNotDisturb(eaBleNotDisturb, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x45);
                                         }

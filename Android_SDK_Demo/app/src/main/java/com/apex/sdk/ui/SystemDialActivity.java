@@ -137,7 +137,7 @@ public class SystemDialActivity extends AppCompatActivity {
                                 LogUtils.e(TAG,"开始设置当前表盘");
                                 EABleManager.getInstance().setWatchFace(eaBleWatchFace, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x42);
                                         }

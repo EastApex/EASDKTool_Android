@@ -146,7 +146,7 @@ public class CheckActivity extends AppCompatActivity {
                     }
                     EABleManager.getInstance().startOrEndCheck(eaBleCheckSwitch, new GeneralCallback() {
                         @Override
-                        public void result(boolean success) {
+                        public void result(boolean success,int reason) {
                             Message message = new Message();
                             message.what = 0x41;
                             message.obj = success;

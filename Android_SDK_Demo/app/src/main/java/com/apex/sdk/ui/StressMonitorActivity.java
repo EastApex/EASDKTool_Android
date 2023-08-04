@@ -135,7 +135,7 @@ public class StressMonitorActivity extends AppCompatActivity {
                                 }
                                 EABleManager.getInstance().startStressMonitor(eaBleAutoStressMonitor, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x42);
                                         }

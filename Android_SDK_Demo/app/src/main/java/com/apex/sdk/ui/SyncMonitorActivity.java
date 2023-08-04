@@ -18,18 +18,8 @@ import com.apex.bluetooth.core.EABleManager;
 import com.apex.bluetooth.enumeration.EABleConnectState;
 import com.apex.bluetooth.enumeration.MotionReportType;
 import com.apex.sdk.R;
-import com.apex.sdk.db.GreenDaoManager;
-import com.apex.sdk.db.daily.DailyData;
-import com.apex.sdk.db.hr.HeartData;
-import com.apex.sdk.db.multi.MultiData;
-import com.apex.sdk.db.oxygen.BloodData;
-import com.apex.sdk.db.pressure.PressData;
-import com.apex.sdk.db.resting.RestingRateData;
 import com.apex.sdk.dialog.PriorityDialog;
 import com.apex.sdk.dialog.WaitingDialog;
-
-import java.util.Calendar;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -218,7 +208,7 @@ public class SyncMonitorActivity extends AppCompatActivity {
                                 }
                                 EABleManager.getInstance().requestSyncMotionData(motionReportType, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x40);
                                         }

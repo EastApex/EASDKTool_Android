@@ -207,7 +207,7 @@ public class HeartReteActivity extends AppCompatActivity {
                                     }
                                     EABleManager.getInstance().setHeartRateIntervalTime(10, new GeneralCallback() {
                                         @Override
-                                        public void result(boolean success) {
+                                        public void result(boolean success,int reason) {
                                             if (mHandler != null) {
                                                 mHandler.sendEmptyMessage(0x44);
                                             }
@@ -230,7 +230,7 @@ public class HeartReteActivity extends AppCompatActivity {
                                     }
                                     EABleManager.getInstance().setHeartRateIntervalTime(0, new GeneralCallback() {
                                         @Override
-                                        public void result(boolean success) {
+                                        public void result(boolean success,int reason) {
                                             if (mHandler != null) {
                                                 mHandler.sendEmptyMessage(0x44);
                                             }
@@ -272,7 +272,7 @@ public class HeartReteActivity extends AppCompatActivity {
                                 }
                                 EABleManager.getInstance().setHeartRateIntervalTime(sex, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x45);
                                         }
@@ -319,7 +319,7 @@ public class HeartReteActivity extends AppCompatActivity {
                                     eaBleHr.setSw(1);
                                     EABleManager.getInstance().setHeartRateLimit(eaBleHr, new GeneralCallback() {
                                         @Override
-                                        public void result(boolean success) {
+                                        public void result(boolean success,int reason) {
                                             if (mHandler != null) {
                                                 mHandler.sendEmptyMessage(0x46);
                                             }
@@ -348,7 +348,7 @@ public class HeartReteActivity extends AppCompatActivity {
                                     eaBleHr.setSw(0);
                                     EABleManager.getInstance().setHeartRateLimit(eaBleHr, new GeneralCallback() {
                                         @Override
-                                        public void result(boolean success) {
+                                        public void result(boolean success,int reason) {
                                             if (mHandler != null) {
                                                 mHandler.sendEmptyMessage(0x46);
                                             }
@@ -395,7 +395,7 @@ public class HeartReteActivity extends AppCompatActivity {
                                 eaBleHr.setMax_hr(sex);
                                 EABleManager.getInstance().setHeartRateLimit(eaBleHr, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x47);
                                         }

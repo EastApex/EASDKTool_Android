@@ -233,7 +233,7 @@ public class UserInfoActivity extends AppCompatActivity {
                                 tempSex = sex;
                                 EABleManager.getInstance().setUserInfo(eaBlePersonInfo, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x42);
                                         }
@@ -285,7 +285,7 @@ public class UserInfoActivity extends AppCompatActivity {
                                 }
                                 EABleManager.getInstance().setUserInfo(eaBlePersonInfo, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x44);
                                         }
@@ -335,7 +335,7 @@ public class UserInfoActivity extends AppCompatActivity {
                                 }
                                 EABleManager.getInstance().setUserInfo(eaBlePersonInfo, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x45);
                                         }
@@ -385,7 +385,7 @@ public class UserInfoActivity extends AppCompatActivity {
                                 }
                                 EABleManager.getInstance().setUserInfo(eaBlePersonInfo, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x46);
                                         }
@@ -440,7 +440,7 @@ public class UserInfoActivity extends AppCompatActivity {
                                 }
                                 EABleManager.getInstance().setUserInfo(eaBlePersonInfo, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x47);
                                         }
@@ -501,7 +501,7 @@ public class UserInfoActivity extends AppCompatActivity {
                                 }
                                 EABleManager.getInstance().setUserInfo(eaBlePersonInfo, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x48);
                                         }

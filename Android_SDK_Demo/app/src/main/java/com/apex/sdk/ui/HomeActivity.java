@@ -54,22 +54,15 @@ import com.apex.bluetooth.model.EABleSocialResponse;
 import com.apex.bluetooth.model.EABleStepFrequencyData;
 import com.apex.bluetooth.model.EABleSwitch;
 import com.apex.bluetooth.model.EABleTimelyData;
+import com.apex.bluetooth.model.Sleep;
 import com.apex.bluetooth.utils.LogData2File;
 import com.apex.bluetooth.utils.LogUtils;
 import com.apex.sdk.R;
-import com.apex.sdk.db.daily.DailyData;
-import com.apex.sdk.db.freq.StepFreqData;
-import com.apex.sdk.db.gps.GpsData;
-import com.apex.sdk.db.hr.HeartData;
-import com.apex.sdk.db.multi.MultiData;
-import com.apex.sdk.db.oxygen.BloodData;
-import com.apex.sdk.db.pace.PaceData;
-import com.apex.sdk.db.pressure.PressData;
-import com.apex.sdk.db.resting.RestingRateData;
-import com.apex.sdk.db.sleep.SleepData;
+import com.apex.sdk.dialog.QuickReplyDialog;
 import com.apex.sdk.dialog.WaitingDialog;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -88,6 +81,7 @@ public class HomeActivity extends AppCompatActivity {
     private final String TAG = this.getClass().getSimpleName();
     private boolean isConnected;
     private WaitingDialog waitingDialog;
+    private QuickReplyDialog quickReplyDialog;
     private Handler mHandler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -115,6 +109,15 @@ public class HomeActivity extends AppCompatActivity {
             } else if (msg.what == 0x38) {
                 stateText.setText(getString(R.string.disconnect));
                 Toast.makeText(HomeActivity.this, getString(R.string.disconnect), Toast.LENGTH_SHORT).show();
+            } else if (msg.what == 0x39) {
+                String info = (String) msg.obj;
+                if (quickReplyDialog == null) {
+                    quickReplyDialog = new QuickReplyDialog(HomeActivity.this);
+                }
+                if (!quickReplyDialog.isShowing()) {
+                    quickReplyDialog.show();
+                }
+                quickReplyDialog.addContent(info);
             }
         }
     };
@@ -297,6 +300,10 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(new Intent(HomeActivity.this, MotionHeartAlarmActivity.class));
                     } else if (getString(R.string.social_contact).equalsIgnoreCase(apiName)) {
                         startActivity(new Intent(HomeActivity.this, SosContactActivity.class));
+                    } else if (getString(R.string.bt).equalsIgnoreCase(apiName)) {
+                        startActivity(new Intent(HomeActivity.this, BTActivity.class));
+                    } else if (getString(R.string.reply_message).equalsIgnoreCase(apiName)) {
+                        startActivity(new Intent(HomeActivity.this, MsgActivity.class));
                     } else {
                         Toast.makeText(HomeActivity.this, getString(R.string.unknown), Toast.LENGTH_SHORT).show();
                     }
@@ -334,6 +341,10 @@ public class HomeActivity extends AppCompatActivity {
         if (waitingDialog != null) {
             waitingDialog.dismiss();
             waitingDialog = null;
+        }
+        if (quickReplyDialog != null) {
+            quickReplyDialog.destroy();
+            quickReplyDialog = null;
         }
         EABleManager.getInstance().disconnectPeripheral();
         itemAdapter = null;
@@ -512,6 +523,16 @@ public class HomeActivity extends AppCompatActivity {
         public void transmissionComplete() {//The app does not need to reply,After receiving the entry command,
             // it indicates that the interaction between the watch motion data and the app is completed. At this time, the app can process the motion data
             Log.e(TAG, "transmissionComplete");
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.HOUR_OF_DAY, 0);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+            calendar.set(Calendar.MILLISECOND, 0);
+            List<Sleep> sleepList = EABleManager.getInstance().querySleepData(calendar.getTimeInMillis());
+            if (sleepList != null && !sleepList.isEmpty()) {
+                Log.e(TAG, "获取到的睡眠数据:" + JSONObject.toJSONString(sleepList));
+            }
+
 
         }
 
@@ -586,6 +607,19 @@ public class HomeActivity extends AppCompatActivity {
 
         @Override
         public void socialResponse(EABleSocialResponse eaBleSocialResponse) {//The social Reply of the watch is a reserved item and is not used for the time being
+            Log.e(TAG, "回复内容:" + eaBleSocialResponse.content);
+            if (eaBleSocialResponse != null) {
+                String msg = eaBleSocialResponse.content;
+                if (!TextUtils.isEmpty(msg) && !"".equalsIgnoreCase(msg)) {
+                    if (mHandler != null) {
+                        Message message = new Message();
+                        message.what = 0x39;
+                        message.obj = msg;
+                        mHandler.sendMessage(message);
+                    }
+
+                }
+            }
 
         }
 
@@ -652,6 +686,11 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         @Override
+        public void btStatus(EABleSwitch eaBleSwitch) {
+            Log.e(TAG, "BT状态:" + eaBleSwitch.getValue());
+        }
+
+        @Override
         public void mutualFail(int errorCode) {
 
         }
@@ -661,18 +700,7 @@ public class HomeActivity extends AppCompatActivity {
         @Override
         public void dailyExerciseData(List<EABleDailyData> sportList, CommonFlag mCommon) {
             if (sportList != null && !sportList.isEmpty()) {
-                List<DailyData> dataList = new ArrayList<>();
-                for (int i = 0; i < sportList.size(); i++) {
-                    DailyData dailyData = new DailyData();
-                    dailyData.setCurrentTime(sportList.get(i).getTime_stamp());
-                    dailyData.setAverage_heart_rate(sportList.get(i).getAverage_heart_rate());
-                    dailyData.setCalorie(sportList.get(i).getCalorie());
-                    dailyData.setDistance(sportList.get(i).getDistance());
-                    dailyData.setDuration(sportList.get(i).getDuration());
-                    dailyData.setSteps(sportList.get(i).getSteps());
-                    dataList.add(dailyData);
-                    Log.e(TAG, "日常:" + dailyData.toString());
-                }
+                Log.e(TAG, "日常:" + JSONObject.toJSONString(sportList));
 
             }
             replayWatch(3001, mCommon);
@@ -682,15 +710,7 @@ public class HomeActivity extends AppCompatActivity {
         @Override
         public void sleepData(List<EABleSleepData> sleepList, CommonFlag mCommon) {
             if (sleepList != null && !sleepList.isEmpty()) {
-                List<SleepData> dataList = new ArrayList<>();
-                for (int i = 0; i < sleepList.size(); i++) {
-                    SleepData sleepData = new SleepData();
-                    sleepData.setCurrentTime(sleepList.get(i).getTime_stamp());
-                    sleepData.setSleepType(sleepList.get(i).getE_sleep_node().getValue());
-                    dataList.add(sleepData);
-                    Log.e(TAG, "睡眠:" + sleepData.toString());
-                }
-
+                Log.e(TAG, "睡眠:" + JSONObject.toJSONString(sleepList));
             }
             replayWatch(3002, mCommon);
 
@@ -699,14 +719,7 @@ public class HomeActivity extends AppCompatActivity {
         @Override
         public void heartData(List<EABleHeartData> heartList, CommonFlag mCommon) {
             if (heartList != null && !heartList.isEmpty()) {
-                List<HeartData> dataList = new ArrayList<>();
-                for (int i = 0; i < heartList.size(); i++) {
-                    HeartData heartData = new HeartData();
-                    heartData.setCurrentTime(heartList.get(i).getTime_stamp());
-                    heartData.setHr_value(heartList.get(i).getHr_value());
-                    dataList.add(heartData);
-                    Log.e(TAG, "心率:" + heartData.toString());
-                }
+                Log.e(TAG, "心率:" + JSONObject.toJSONString(heartList));
 
             }
             replayWatch(3003, mCommon);
@@ -715,15 +728,7 @@ public class HomeActivity extends AppCompatActivity {
         @Override
         public void gpsData(List<EABleGpsData> gpsList, CommonFlag mCommon) {
             if (gpsList != null && !gpsList.isEmpty()) {
-                List<GpsData> dataList = new ArrayList<>();
-                for (int i = 0; i < gpsList.size(); i++) {
-                    GpsData gpsData = new GpsData();
-                    gpsData.setCurrentTime(gpsList.get(i).getTime_stamp());
-                    gpsData.setLatitude(gpsList.get(i).getLatitude());
-                    gpsData.setLongitude(gpsList.get(i).getLongitude());
-                    dataList.add(gpsData);
-                    Log.e(TAG, "GPS:" + gpsData.toString());
-                }
+                Log.e(TAG, "GPS:" + JSONObject.toJSONString(gpsList));
 
             }
             replayWatch(3004, mCommon);
@@ -732,35 +737,7 @@ public class HomeActivity extends AppCompatActivity {
         @Override
         public void multiMotionData(List<EABleMultiData> multiList, CommonFlag mCommon) {
             if (multiList != null && !multiList.isEmpty()) {
-                List<MultiData> dataList = new ArrayList<>();
-                for (int i = 0; i < multiList.size(); i++) {
-                    MultiData multiData = new MultiData();
-                    multiData.setSteps(multiList.get(i).getSteps());
-                    multiData.setDistance(multiList.get(i).getDistance());
-                    multiData.setAverage_altitude(multiList.get(i).getAverage_altitude());
-                    multiData.setAverage_heart_rate(multiList.get(i).getAverage_heart_rate());
-                    multiData.setAverage_temperature(multiList.get(i).getAverage_temperature());
-                    multiData.setCalorie(multiList.get(i).getCalorie());
-                    multiData.setDuration(multiList.get(i).getDuration());
-                    multiData.setBegin_time_stamp(multiList.get(i).getBegin_time_stamp());
-                    multiData.setEnd_time_stamp(multiList.get(i).getEnd_time_stamp());
-                    multiData.setTraining_effect_aerobic(multiList.get(i).getTraining_effect_aerobic());
-                    multiData.setTraining_effect_anaerobic(multiList.get(i).getTraining_effect_anaerobic());
-                    multiData.setTraining_effect_fatconsumption(multiList.get(i).getTraining_effect_fatconsumption());
-                    multiData.setTraining_effect_limit(multiList.get(i).getTraining_effect_limit());
-                    multiData.setTraining_effect_normal(multiList.get(i).getTraining_effect_normal());
-                    multiData.setTraining_effect_warmUp(multiList.get(i).getTraining_effect_warmUp());
-                    multiData.setAvg_pace_frequency(multiList.get(i).getAverage_step_freq());
-                    multiData.setAvg_pace(multiList.get(i).getAverage_pace());
-                    multiData.setAvg_velocity(multiList.get(i).getAverage_speed());
-                    multiData.setAverage_stride(multiList.get(i).getAverage_stride());
-                    multiData.setAverage_heart_rate_max(multiList.get(i).getAverage_heart_rate_max());
-                    multiData.setAverage_heart_rate_min(multiList.get(i).getAverage_heart_rate_min());
-                    multiData.setE_type(multiList.get(i).getE_type().getValue());
-                    dataList.add(multiData);
-                    Log.e(TAG, "多运动:" + multiData.toString());
-                }
-
+                Log.e(TAG, "多运动:" + JSONObject.toJSONString(multiList));
             }
             replayWatch(3005, mCommon);
         }
@@ -768,14 +745,7 @@ public class HomeActivity extends AppCompatActivity {
         @Override
         public void bloodOxygenData(List<EABleBloodOxygen> oxygenList, CommonFlag mCommon) {
             if (oxygenList != null && !oxygenList.isEmpty()) {
-                List<BloodData> dataList = new ArrayList<>();
-                for (int i = 0; i < oxygenList.size(); i++) {
-                    BloodData bloodData = new BloodData();
-                    bloodData.setBlood_oxygen_value(oxygenList.get(i).getBlood_oxygen_value());
-                    bloodData.setCurrentTime(oxygenList.get(i).getTime_stamp());
-                    dataList.add(bloodData);
-                    Log.e(TAG, "血氧:" + bloodData.toString());
-                }
+                Log.e(TAG, "血氧:" + JSONObject.toJSONString(oxygenList));
 
             }
             replayWatch(3006, mCommon);
@@ -784,15 +754,7 @@ public class HomeActivity extends AppCompatActivity {
         @Override
         public void pressureData(List<EABlePressureData> pressureList, CommonFlag mCommon) {
             if (pressureList != null && !pressureList.isEmpty()) {
-                List<PressData> dataList = new ArrayList<>();
-                for (int i = 0; i < pressureList.size(); i++) {
-                    PressData pressData = new PressData();
-                    pressData.setCurrentTime(pressureList.get(i).getTime_stamp());
-                    pressData.setLevel(pressureList.get(i).getE_type().getValue());
-                    pressData.setPress_value(pressureList.get(i).getStess_value());
-                    dataList.add(pressData);
-                    Log.e(TAG, "压力:" + pressData.toString());
-                }
+                Log.e(TAG, "压力:" + JSONObject.toJSONString(pressureList));
 
             }
             replayWatch(3007, mCommon);
@@ -801,14 +763,7 @@ public class HomeActivity extends AppCompatActivity {
         @Override
         public void stepFrequencyData(List<EABleStepFrequencyData> stepFreqList, CommonFlag mCommon) {
             if (stepFreqList != null && !stepFreqList.isEmpty()) {
-                List<StepFreqData> dataList = new ArrayList<>();
-                for (int i = 0; i < stepFreqList.size(); i++) {
-                    StepFreqData stepFreqData = new StepFreqData();
-                    stepFreqData.setCurrentTime(stepFreqList.get(i).getTime_stamp());
-                    stepFreqData.setStepFreq(stepFreqList.get(i).getStep_freq_value());
-                    dataList.add(stepFreqData);
-                    Log.e(TAG, "步频:" + stepFreqData.toString());
-                }
+                Log.e(TAG, "步频:" + JSONObject.toJSONString(stepFreqList));
 
             }
             replayWatch(3008, mCommon);
@@ -818,14 +773,7 @@ public class HomeActivity extends AppCompatActivity {
         @Override
         public void speedData(List<EABlePaceData> paceList, CommonFlag mCommon) {
             if (paceList != null && !paceList.isEmpty()) {
-                List<PaceData> dataList = new ArrayList<>();
-                for (int i = 0; i < paceList.size(); i++) {
-                    PaceData paceData = new PaceData();
-                    paceData.setCurrentTime(paceList.get(i).getTime_stamp());
-                    paceData.setStepPace(paceList.get(i).getStep_pace_value());
-                    dataList.add(paceData);
-                    Log.e(TAG, "配速:" + paceData.toString());
-                }
+                Log.e(TAG, "配速:" + JSONObject.toJSONString(paceList));
 
             }
             replayWatch(3009, mCommon);
@@ -834,14 +782,7 @@ public class HomeActivity extends AppCompatActivity {
         @Override
         public void restingHeartRateData(List<EABleRestingRateData> restingList, CommonFlag mCommon) {
             if (restingList != null && !restingList.isEmpty()) {
-                List<RestingRateData> dataList = new ArrayList<>();
-                for (int i = 0; i < restingList.size(); i++) {
-                    RestingRateData restingRateData = new RestingRateData();
-                    restingRateData.setCurrentTime(restingList.get(i).getTime_stamp());
-                    restingRateData.setHeartRate(restingList.get(i).getHr_value());
-                    dataList.add(restingRateData);
-                    Log.e(TAG, "静息心率:" + restingRateData.getHeartRate());
-                }
+                Log.e(TAG, "静息心率:" + JSONObject.toJSONString(restingList));
 
             }
             replayWatch(3010, mCommon);

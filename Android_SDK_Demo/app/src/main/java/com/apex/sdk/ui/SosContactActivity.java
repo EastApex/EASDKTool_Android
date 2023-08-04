@@ -132,7 +132,7 @@ public class SosContactActivity extends AppCompatActivity {
                     eaBleSoSContact.setNum(num);
                     EABleManager.getInstance().setSosContact(eaBleSoSContact, new GeneralCallback() {
                         @Override
-                        public void result(boolean b) {
+                        public void result(boolean b,int reason) {
 
                         }
 

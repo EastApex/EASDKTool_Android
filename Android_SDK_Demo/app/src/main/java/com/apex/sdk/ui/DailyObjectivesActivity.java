@@ -189,7 +189,7 @@ public class DailyObjectivesActivity extends AppCompatActivity {
                                 tempSteps = sex;
                                 EABleManager.getInstance().setDailyGoal(eaBleDailyGoal, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x42);
                                         }

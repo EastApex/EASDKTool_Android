@@ -161,7 +161,7 @@ public class SetAppSportData extends AppCompatActivity {
                     }
                     EABleManager.getInstance().setData2Watch(eaBleAppSportData, new GeneralCallback() {
                         @Override
-                        public void result(boolean success) {
+                        public void result(boolean success,int reason) {
                             Message message = new Message();
                             message.what = 0x41;
                             message.obj = success;

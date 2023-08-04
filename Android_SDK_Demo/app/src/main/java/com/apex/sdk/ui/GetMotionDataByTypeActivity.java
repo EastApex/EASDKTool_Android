@@ -134,7 +134,7 @@ public class GetMotionDataByTypeActivity extends AppCompatActivity {
                     }
                     EABleManager.getInstance().getMotionDataWithType(eaBleDataType, new GeneralCallback() {
                         @Override
-                        public void result(boolean success) {
+                        public void result(boolean success,int reason) {
                             Message message = new Message();
                             message.what = 0x41;
                             message.obj = success;

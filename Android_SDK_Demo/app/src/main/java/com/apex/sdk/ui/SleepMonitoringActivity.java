@@ -227,7 +227,7 @@ public class SleepMonitoringActivity extends AppCompatActivity {
                                 }
                                 EABleManager.getInstance().setAutoSleepCheck(eaBleAutoCheckSleep, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x44);
                                         }
@@ -276,7 +276,7 @@ public class SleepMonitoringActivity extends AppCompatActivity {
                                 }
                                 EABleManager.getInstance().setAutoSleepCheck(eaBleAutoCheckSleep, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x45);
                                         }
@@ -354,7 +354,7 @@ public class SleepMonitoringActivity extends AppCompatActivity {
             }
             EABleManager.getInstance().setAutoSleepCheck(eaBleAutoCheckSleep, new GeneralCallback() {
                 @Override
-                public void result(boolean success) {
+                public void result(boolean success,int reason) {
                     if (mHandler != null) {
                         mHandler.sendEmptyMessage(0x46);
                     }

@@ -448,6 +448,8 @@
         <item>@string/delete_custom_dial</item>
         <item>@string/motion_alarm_heart</item>
         <item>@string/social_contact</item>
+        <item>@string/bt</item>
+        <item>@string/reply_message</item>
     </string-array>
     <string name="watch_information">Watch information</string>
     <string name="user_information">User information</string>
@@ -591,4 +593,14 @@
     <string name="ovulation_reminder">Ovulation reminder</string>
     <string name="contact_name">Contact name</string>
     <string name="contact_num">Num</string>
+    <string name="bt">BT</string>
+    <string name="bt_fail_1">Classic Bluetooth BT control failure: device has entered Do Not Disturb mode</string>
+    <string name="bt_fail_2">Classic Bluetooth BT control failure: device low battery</string>
+    <string name="bt_fail_3">Classic Bluetooth BT control failure: device is charging</string>
+    <string name="reply_message">Reply to message</string>
+    <string name="msg_1">Information 1</string>
+    <string name="msg_2">Information 2</string>
+    <string name="msg_3">Information 3</string>
+    <string name="msg_4">Information 4</string>
+    <string name="reply">Quick reply content</string>
 </resources>

@@ -163,7 +163,7 @@ public class DeleteDialActivity extends AppCompatActivity {
                     }
                     EABleManager.getInstance().deleteCustomDial(dial.get(0), new GeneralCallback() {
                         @Override
-                        public void result(boolean b) {
+                        public void result(boolean b,int reason) {
                             dial.remove(0);
                             if (mHandler != null) {
                                 mHandler.sendEmptyMessage(0x42);

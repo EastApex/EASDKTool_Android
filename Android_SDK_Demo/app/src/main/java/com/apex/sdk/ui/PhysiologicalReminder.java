@@ -165,7 +165,7 @@ public class PhysiologicalReminder extends AppCompatActivity {
                                 }
                                 EABleManager.getInstance().setPeriodReminder(eaBlePeriodReminder, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean b) {
+                                    public void result(boolean b,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x42);
                                         }
@@ -206,7 +206,7 @@ public class PhysiologicalReminder extends AppCompatActivity {
                                 }
                                 EABleManager.getInstance().setPeriodReminder(eaBlePeriodReminder, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean b) {
+                                    public void result(boolean b,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x42);
                                         }
@@ -247,7 +247,7 @@ public class PhysiologicalReminder extends AppCompatActivity {
                                 }
                                 EABleManager.getInstance().setPeriodReminder(eaBlePeriodReminder, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean b) {
+                                    public void result(boolean b,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x42);
                                         }
@@ -288,7 +288,7 @@ public class PhysiologicalReminder extends AppCompatActivity {
                                 }
                                 EABleManager.getInstance().setPeriodReminder(eaBlePeriodReminder, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean b) {
+                                    public void result(boolean b,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x42);
                                         }
@@ -330,7 +330,7 @@ public class PhysiologicalReminder extends AppCompatActivity {
                                 }
                                 EABleManager.getInstance().setPeriodReminder(eaBlePeriodReminder, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean b) {
+                                    public void result(boolean b,int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x42);
                                         }

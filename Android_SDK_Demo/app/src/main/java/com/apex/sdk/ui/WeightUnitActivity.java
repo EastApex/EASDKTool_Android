@@ -142,7 +142,7 @@ public class WeightUnitActivity extends AppCompatActivity {
                                 }
                                 EABleManager.getInstance().setWeightUnit(eaBleWeightFormat, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success) {
+                                    public void result(boolean success, int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x42);
                                         }

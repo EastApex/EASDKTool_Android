@@ -150,7 +150,7 @@ public class BindActivity extends AppCompatActivity {
                     eaBleBindInfo.setE_ops(EABleBindInfo.BindingOps.end);
                     EABleManager.getInstance().setOpsBinding(eaBleBindInfo, new GeneralCallback() {
                         @Override
-                        public void result(boolean success) {
+                        public void result(boolean success,int reason) {
                             LogUtils.e(TAG,"成功..........0x44");
                             if (mHandler != null) {
                                 mHandler.sendEmptyMessage(0x44);
@@ -182,7 +182,7 @@ public class BindActivity extends AppCompatActivity {
                     eaBleDev.setE_ops(EABleDev.DevOps.restore_factory);
                     EABleManager.getInstance().setDeviceOps(eaBleDev, new GeneralCallback() {
                         @Override
-                        public void result(boolean success) {
+                        public void result(boolean success,int reason) {
                             LogUtils.e(TAG,"成功..........0x42");
                             if (mHandler != null) {
                                 mHandler.sendEmptyMessage(0x42);

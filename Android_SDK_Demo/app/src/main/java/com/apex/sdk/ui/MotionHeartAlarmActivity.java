@@ -224,7 +224,7 @@ public class MotionHeartAlarmActivity extends AppCompatActivity {
                     }
                     EABleManager.getInstance().setMotionAlarmHr(eaBleMotionAlarmHr, new GeneralCallback() {
                         @Override
-                        public void result(boolean b) {
+                        public void result(boolean b,int reason) {
                             if (mHandler != null) {
                                 mHandler.sendEmptyMessage(0x42);
                             }
