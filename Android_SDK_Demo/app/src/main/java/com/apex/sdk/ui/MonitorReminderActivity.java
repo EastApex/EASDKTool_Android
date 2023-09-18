@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 
+import com.alibaba.fastjson.JSONObject;
 import com.apex.bluetooth.callback.GeneralCallback;
 import com.apex.bluetooth.callback.MonitorReminderCallback;
 import com.apex.bluetooth.core.EABleManager;
@@ -152,6 +153,7 @@ public class MonitorReminderActivity extends AppCompatActivity {
                 }
                 EABleMonitorReminder eaBleMonitorReminder = (EABleMonitorReminder) msg.obj;
                 if (eaBleMonitorReminder != null) {
+                    Log.e(TAG, "获取到的45的命令:" + JSONObject.toJSONString(eaBleMonitorReminder));
                     Log.e(TAG, "有数据");
                     startHour = eaBleMonitorReminder.getBegin_hour();
                     startMinute = eaBleMonitorReminder.getBegin_minute();
@@ -240,6 +242,9 @@ public class MonitorReminderActivity extends AppCompatActivity {
                 }
                 finish();
             } else if (msg.what == 0x43) {
+                if (waitingDialog != null && waitingDialog.isShowing()) {
+                    waitingDialog.dismiss();
+                }
                 Toast.makeText(MonitorReminderActivity.this, getString(R.string.modification_failed), Toast.LENGTH_SHORT).show();
             }
         }
@@ -330,10 +335,12 @@ public class MonitorReminderActivity extends AppCompatActivity {
                     reminderDialog.setSelectListener(new ReminderDialog.SelectListener() {
                         @Override
                         public void selectData(String sex) {
+                            typeView.setText(sex);
                             if (sex.equalsIgnoreCase(getString(R.string.drinking))) {
                                 type = 0;
                                 waterTableRow.setVisibility(View.VISIBLE);
                                 stepsTableRow.setVisibility(View.GONE);
+
                             } else if (sex.equalsIgnoreCase(getString(R.string.Hand_washing))) {
                                 type = 1;
                                 waterTableRow.setVisibility(View.GONE);
@@ -355,7 +362,7 @@ public class MonitorReminderActivity extends AppCompatActivity {
             waitingDialog.show();
             QueryInfo queryInfo = new QueryInfo();
             queryInfo.setQueryWatchInfoType(QueryWatchInfoType.monitor_reminder);
-            queryInfo.setDataType(1);
+            queryInfo.setDataType(0);
             EABleManager.getInstance().queryInfo(queryInfo, new MonitorReminderCallback() {
                 @Override
                 public void mutualFail(int errorCode) {
@@ -398,9 +405,10 @@ public class MonitorReminderActivity extends AppCompatActivity {
                     eaBleMonitorReminder.setEnd_minute(endMinute);
                     eaBleMonitorReminder.setCup(cup);
                     eaBleMonitorReminder.setStep_threshold(steps);
+                    Log.e(TAG,"传递过去的数据:"+JSONObject.toJSONString(eaBleMonitorReminder));
                     EABleManager.getInstance().addMonitorReminder(eaBleMonitorReminder, new GeneralCallback() {
                         @Override
-                        public void result(boolean success,int reason) {
+                        public void result(boolean success, int reason) {
                             if (mHandler != null) {
                                 mHandler.sendEmptyMessage(0x42);
                             }

@@ -118,19 +118,22 @@ public class SosContactActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String num = numText.getText().toString();
-                if (TextUtils.isEmpty(num)) {
-                    return;
-                }
+              //  if (TextUtils.isEmpty(num)) {
+              //      return;
+              //  }
                 if (EABleManager.getInstance().getDeviceConnectState() == EABleConnectState.STATE_CONNECTED) {
-                    if (eaBleSoSContact == null) {
-                        eaBleSoSContact = new EABleSoSContact();
-                    }
+                  //  if (eaBleSoSContact == null) {
+                  //      eaBleSoSContact = new EABleSoSContact();
+                  //  }
+                   EABleSoSContact eaBleSoSContact1= new EABleSoSContact();
                     String name = nameText.getText().toString();
                     if (!TextUtils.isEmpty(name)) {
-                        eaBleSoSContact.setName(name);
+                        eaBleSoSContact1.setName(name);
                     }
-                    eaBleSoSContact.setNum(num);
-                    EABleManager.getInstance().setSosContact(eaBleSoSContact, new GeneralCallback() {
+                    if (!TextUtils.isEmpty(num)) {
+                        eaBleSoSContact1.setNum(num);
+                    }
+                    EABleManager.getInstance().setSosContact(eaBleSoSContact1, new GeneralCallback() {
                         @Override
                         public void result(boolean b,int reason) {
 

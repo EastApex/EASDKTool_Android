@@ -3,11 +3,13 @@ package com.apex.sdk.ui;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.apex.bluetooth.core.EABleManager;
 import com.apex.bluetooth.listener.EABleScanListener;
 import com.apex.bluetooth.model.EABleDevice;
+import com.apex.sdk.BuildConfig;
 import com.apex.sdk.R;
 
 import java.util.ArrayList;
@@ -76,6 +79,12 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+     //   Log.e(TAG,"R8版本:"+ BuildConfig.);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

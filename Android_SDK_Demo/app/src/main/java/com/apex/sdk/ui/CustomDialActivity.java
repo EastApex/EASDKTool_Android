@@ -33,6 +33,7 @@ import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.apex.bluetooth.callback.ChangeWatchIdCallback;
 import com.apex.bluetooth.callback.OtaCallback;
 import com.apex.bluetooth.core.EABleManager;
 import com.apex.bluetooth.enumeration.EABleConnectState;
@@ -48,6 +49,7 @@ import com.example.custom_dial.CustomDialCallback;
 import com.example.custom_dial.CustomDiffTxtColorDialParam;
 import com.example.custom_dial.CustomPointDialParam;
 import com.example.custom_dial.DialStyle;
+import com.example.custom_dial.NewRGBAPlatformDiffTxtUtils;
 import com.example.custom_dial.RGBAPlatformDiffTxtUtils;
 import com.example.custom_dial.RGBAPointUtils;
 import com.theartofdev.edmodo.cropper.CropImage;
@@ -56,6 +58,9 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,9 +95,10 @@ public class CustomDialActivity extends AppCompatActivity {
     private DialStyle currentDialStyle = DialStyle.blackTxt;
     private boolean isInstalling;
     private String filePath;
-    RGBAPlatformDiffTxtUtils rgbaPlatformDiffTxtUtils;
+    NewRGBAPlatformDiffTxtUtils rgbaPlatformDiffTxtUtils;
     int currentTxtColor = Color.BLACK;
     RGBAPointUtils rgbaPointUtils;
+    Bitmap pBitmap;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -101,12 +107,13 @@ public class CustomDialActivity extends AppCompatActivity {
                 if (waitingDialog != null && waitingDialog.isShowing()) {
                     waitingDialog.dismiss();
                 }
-                Bitmap pBitmap = (Bitmap) msg.obj;
+                pBitmap = (Bitmap) msg.obj;
                 if (pBitmap != null) {
                     Log.e(TAG, "生成缩略图大图的宽:" + pBitmap.getWidth() + ",高:" + pBitmap.getHeight());
                     Glide.with(CustomDialActivity.this).load(pBitmap).into(previewImage);
                 }
             } else if (msg.what == 0x52) {
+                //如果需要修改表盘,请使用修改表盘的api,如果不需要修改表盘,可以直接使用OTA
                 if (EABleManager.getInstance().getDeviceConnectState() == EABleConnectState.STATE_CONNECTED) {
                     new Thread() {
                         @Override
@@ -118,6 +125,7 @@ public class CustomDialActivity extends AppCompatActivity {
                             EABleOta eaBleOta = new EABleOta();
                             eaBleOta.setOtaType(EABleOta.OtaType.user_wf);
                             eaBleOta.setFilePath(filePath);
+                            eaBleOta.setPop(true);
                             //  eaBleOta.setFileByte(fileByte);
                             otaList.add(eaBleOta);
                             EABleManager.getInstance().otaUpdate(otaList, new OtaCallback() {
@@ -173,6 +181,23 @@ public class CustomDialActivity extends AppCompatActivity {
                     waitingDialog.dismiss();
                 }
                 Toast.makeText(CustomDialActivity.this, getString(R.string.ota_failed), Toast.LENGTH_SHORT).show();
+            } else if (msg.what == 0x55) {
+                EABleManager.getInstance().modifyWatchFaceId("10", filePath, new ChangeWatchIdCallback() {
+                    @Override
+                    public void watchFace(String s) {
+                        if (TextUtils.isEmpty(s) || "".equalsIgnoreCase(s)) {
+                            if (waitingDialog != null) {
+                                waitingDialog.dismiss();
+                            }
+                            Toast.makeText(CustomDialActivity.this, getString(R.string.Create_dial_fail), Toast.LENGTH_SHORT).show();
+                        } else {
+                            filePath = s;
+                            if (mHandler != null) {
+                                mHandler.sendEmptyMessage(0x52);
+                            }
+                        }
+                    }
+                });
             }
         }
     };
@@ -211,7 +236,7 @@ public class CustomDialActivity extends AppCompatActivity {
         toolbar.setNavigationIcon(R.mipmap.exit_page);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(null);
-        rgbaPlatformDiffTxtUtils = new RGBAPlatformDiffTxtUtils(CustomDialActivity.this, watchInfo.lcd_pixel_type == 1 ? true : false);
+        rgbaPlatformDiffTxtUtils = new NewRGBAPlatformDiffTxtUtils(CustomDialActivity.this, watchInfo.lcd_pixel_type == 1 ? true : false);
         rgbaPlatformDiffTxtUtils.showData(true);
         Log.e(TAG, "显示日期");
 
@@ -234,6 +259,7 @@ public class CustomDialActivity extends AppCompatActivity {
         installButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (backBitmap == null || currentDialStyle == null) {
                     return;
                 }
@@ -247,6 +273,8 @@ public class CustomDialActivity extends AppCompatActivity {
                 if (!waitingDialog.isShowing()) {
                     waitingDialog.show();
                 }
+
+
                 if (currentDialStyle == DialStyle.blackTxt || currentDialStyle == DialStyle.whiteTxt) {
                     CustomDiffTxtColorDialParam customDiffTxtColorDialParam = new CustomDiffTxtColorDialParam();
                     customDiffTxtColorDialParam.setBackBitmap(backBitmap);
@@ -257,6 +285,7 @@ public class CustomDialActivity extends AppCompatActivity {
                     customDiffTxtColorDialParam.setScreenWidth(watchInfo.lcd_full_w);
                     customDiffTxtColorDialParam.setCornerRadius(watchInfo.lcd_preview_radius);
                     customDiffTxtColorDialParam.setScreenType(watchInfo.lcd_full_type);
+                    customDiffTxtColorDialParam.setPreviewBitmap(pBitmap);
                     if (watchInfo.lcd_full_w == 240) {
                         if (watchInfo.lcd_full_type == 1) {
                             customDiffTxtColorDialParam.setStartX(58);
@@ -267,11 +296,17 @@ public class CustomDialActivity extends AppCompatActivity {
                         } else {
                             customDiffTxtColorDialParam.setStartX(47);
                             customDiffTxtColorDialParam.setStartY(20);
-                            customDiffTxtColorDialParam.setWx(60);
+                            customDiffTxtColorDialParam.setWx(75);
                             customDiffTxtColorDialParam.setWy(70);
-                            customDiffTxtColorDialParam.setDateX(146);
+                            customDiffTxtColorDialParam.setDateX(131);
                         }
 
+                    } else if (watchInfo.lcd_full_w == 320) {
+                        customDiffTxtColorDialParam.setStartX(85);
+                        customDiffTxtColorDialParam.setStartY(20);
+                        customDiffTxtColorDialParam.setWx(90);
+                        customDiffTxtColorDialParam.setWy(95);
+                        customDiffTxtColorDialParam.setDateX(150);
                     } else if (watchInfo.lcd_full_w == 356) {
                         customDiffTxtColorDialParam.setStartX(88);
                         customDiffTxtColorDialParam.setStartY(20);
@@ -283,7 +318,13 @@ public class CustomDialActivity extends AppCompatActivity {
                         customDiffTxtColorDialParam.setStartY(20);
                         customDiffTxtColorDialParam.setWx(95);
                         customDiffTxtColorDialParam.setWy(95);
-                        customDiffTxtColorDialParam.setDateX(220);
+                        customDiffTxtColorDialParam.setDateX(160);
+                    } else if (watchInfo.lcd_full_w == 412) {
+                        customDiffTxtColorDialParam.setStartX(107);
+                        customDiffTxtColorDialParam.setStartY(20);
+                        customDiffTxtColorDialParam.setWx(115);
+                        customDiffTxtColorDialParam.setWy(110);
+                        customDiffTxtColorDialParam.setDateX(195);
                     } else if (watchInfo.lcd_full_w == 466) {
                         customDiffTxtColorDialParam.setStartX(127);
                         customDiffTxtColorDialParam.setStartY(30);
@@ -302,8 +343,9 @@ public class CustomDialActivity extends AppCompatActivity {
                             } else {
                                 filePath = dPath;
                                 if (mHandler != null) {
-                                    mHandler.sendEmptyMessage(0x52);
+                                    mHandler.sendEmptyMessage(0x55);
                                 }
+
                             }
                         }
                     });
@@ -462,6 +504,32 @@ public class CustomDialActivity extends AppCompatActivity {
         StyleAdapter styleAdapter = new StyleAdapter();
         styleList.setAdapter(styleAdapter);
 
+    }
+
+    private String save2File(InputStream inputStream, String fName) {
+
+        try {
+            File file = new File(getExternalCacheDir(), fName);
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            OutputStream os = new FileOutputStream(file);
+            int read = 0;
+            byte[] bytes = new byte[1024 * 1024];
+            //先读后写
+            while ((read = inputStream.read(bytes)) > 0) {
+                byte[] wBytes = new byte[read];
+                System.arraycopy(bytes, 0, wBytes, 0, read);
+                os.write(wBytes);
+            }
+            os.flush();
+            os.close();
+            inputStream.close();
+            return file.getAbsolutePath();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
@@ -737,11 +805,17 @@ public class CustomDialActivity extends AppCompatActivity {
                     } else {
                         startX = 47;
                         startY = 20;
-                        weekX = 60;
+                        weekX = 90;
                         weekY = 70;
-                        dataX = 146;
+                        dataX = 116;
                     }
-                } else if (watchInfo.lcd_full_w == 356) {
+                }else if (watchInfo.lcd_full_w==320){
+                    startX=85;
+                    startY = 20;
+                    weekX = 110;
+                    weekY = 95;
+                    dataX = 160;
+                }else if (watchInfo.lcd_full_w == 356) {
                     startX = 88;
                     startY = 20;
                     weekX = 75;
@@ -762,7 +836,7 @@ public class CustomDialActivity extends AppCompatActivity {
                 }
                 Log.e(TAG, "开始坐标" + startX + "," + startY + ",日期时间坐标:" + weekX + "," + weekY + "," + dataX);
                 return rgbaPlatformDiffTxtUtils.produceDialThumbnail(backBitmap, watchInfo.lcd_full_w, watchInfo.lcd_full_h, watchInfo.lcd_preview_radius,
-                        watchInfo.lcd_full_type, startX, startY, weekX, weekY, currentTxtColor, dataX);
+                        watchInfo.lcd_full_type, startX, startY, weekX, weekY, currentTxtColor, dataX, watchInfo.lcd_preview_w, watchInfo.lcd_preview_h);
             } else if (currentDialStyle == DialStyle.blackPointer) {
                 if (rgbaPointUtils == null) {
                     rgbaPointUtils = new RGBAPointUtils(CustomDialActivity.this, watchInfo.lcd_pixel_type == 1 ? true : false);

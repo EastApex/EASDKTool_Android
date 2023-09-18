@@ -330,6 +330,7 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        LogUtils.e(TAG,"主页销毁");
         if (unbinder != null) {
             unbinder.unbind();
             unbinder = null;
@@ -607,9 +608,9 @@ public class HomeActivity extends AppCompatActivity {
 
         @Override
         public void socialResponse(EABleSocialResponse eaBleSocialResponse) {//The social Reply of the watch is a reserved item and is not used for the time being
-            Log.e(TAG, "回复内容:" + eaBleSocialResponse.content);
+            Log.e(TAG, "回复内容:" + eaBleSocialResponse.getContent());
             if (eaBleSocialResponse != null) {
-                String msg = eaBleSocialResponse.content;
+                String msg = eaBleSocialResponse.getContent();
                 if (!TextUtils.isEmpty(msg) && !"".equalsIgnoreCase(msg)) {
                     if (mHandler != null) {
                         Message message = new Message();

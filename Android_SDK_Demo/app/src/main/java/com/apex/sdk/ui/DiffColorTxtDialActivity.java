@@ -171,6 +171,7 @@ public class DiffColorTxtDialActivity extends AppCompatActivity {
             }
         });
         drawDiffTxtUtils = new RGBAPlatformDiffTxtUtils(DiffColorTxtDialActivity.this, watchInfo.lcd_pixel_type == 1 ? true : false);
+        drawDiffTxtUtils.showData(true);
         getCurrentColor(radioGroup.getCheckedRadioButtonId());
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
