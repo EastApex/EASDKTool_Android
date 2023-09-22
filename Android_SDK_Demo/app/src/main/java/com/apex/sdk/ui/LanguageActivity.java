@@ -90,6 +90,8 @@ public class LanguageActivity extends AppCompatActivity {
                     languageText.setText(getString(R.string.language_hebrew));
                 } else if (eaBleBatInfo.getE_type() == EABleDeviceLanguage.LanguageType.swedish) {
                     languageText.setText(getString(R.string.language_swedish));
+                } else if (eaBleBatInfo.getE_type() == EABleDeviceLanguage.LanguageType.hindi) {
+                    languageText.setText(getString(R.string.language_hindi));
                 }
                 String supportLanguage = "";
                 if (typeList != null && !typeList.isEmpty()) {
@@ -216,7 +218,7 @@ public class LanguageActivity extends AppCompatActivity {
                                 tempLanguage = sex;
                                 EABleManager.getInstance().setDevLanguage(deviceLanguage, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success,int reason) {
+                                    public void result(boolean success, int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x42);
                                         }

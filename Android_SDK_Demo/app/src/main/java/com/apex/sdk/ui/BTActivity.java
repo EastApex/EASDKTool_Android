@@ -3,6 +3,7 @@ package com.apex.sdk.ui;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,10 +46,13 @@ public class BTActivity extends AppCompatActivity {
                     waitingDialog.dismiss();
                 }
                 int status = msg.arg1;
+                Log.e(TAG, "BT状态:" + status);
                 if (status <= 0) {
                     statusView.setText(getString(R.string.switch_state_close));
-                } else {
+                } else if (status == 1) {
                     statusView.setText(getString(R.string.switch_state_on));
+                } else {
+                    statusView.setText(getString(R.string.bt_on_and_connect));
                 }
             } else if (msg.what == 0x41) {
                 if (waitingDialog != null) {

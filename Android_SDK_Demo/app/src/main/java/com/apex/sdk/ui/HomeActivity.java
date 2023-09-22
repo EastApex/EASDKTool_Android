@@ -1,5 +1,6 @@
 package com.apex.sdk.ui;
 
+import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,18 +21,24 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.fastjson.JSONObject;
+import com.apex.bluetooth.callback.BTMacCallback;
 import com.apex.bluetooth.callback.DataReportCallback;
 import com.apex.bluetooth.callback.DataResponseCallback;
+import com.apex.bluetooth.callback.FeaturesCallback;
 import com.apex.bluetooth.callback.MotionDataReportCallback;
 import com.apex.bluetooth.callback.MotionDataResponseCallback;
+import com.apex.bluetooth.callback.WatchInfoCallback;
 import com.apex.bluetooth.core.EABleManager;
 import com.apex.bluetooth.enumeration.CommonFlag;
 import com.apex.bluetooth.enumeration.EABleConnectState;
 import com.apex.bluetooth.enumeration.EABleSportStatus;
+import com.apex.bluetooth.enumeration.QueryWatchInfoType;
 import com.apex.bluetooth.listener.EABleConnectListener;
+import com.apex.bluetooth.model.EABleBTSwitch;
 import com.apex.bluetooth.model.EABleBloodOxygen;
 import com.apex.bluetooth.model.EABleDailyData;
 import com.apex.bluetooth.model.EABleExecutiveResponse;
+import com.apex.bluetooth.model.EABleFeatures;
 import com.apex.bluetooth.model.EABleGeneralSportRespond;
 import com.apex.bluetooth.model.EABleGpsData;
 import com.apex.bluetooth.model.EABleHabitRecord;
@@ -54,6 +61,7 @@ import com.apex.bluetooth.model.EABleSocialResponse;
 import com.apex.bluetooth.model.EABleStepFrequencyData;
 import com.apex.bluetooth.model.EABleSwitch;
 import com.apex.bluetooth.model.EABleTimelyData;
+import com.apex.bluetooth.model.EABleWatchInfo;
 import com.apex.bluetooth.model.Sleep;
 import com.apex.bluetooth.utils.LogData2File;
 import com.apex.bluetooth.utils.LogUtils;
@@ -71,6 +79,7 @@ import butterknife.Unbinder;
 
 public class HomeActivity extends AppCompatActivity {
     private String blueAddress;
+    private String btMacAddress;
     private Unbinder unbinder;
     @BindView(R.id.connect_state)
     TextView stateText;
@@ -88,6 +97,8 @@ public class HomeActivity extends AppCompatActivity {
             super.handleMessage(msg);
             if (msg.what == 0x31) {
                 stateText.setText(getString(R.string.device_connected));
+                //开始判断是否是新的BT
+                queryWatchInfo();
             } else if (msg.what == 0x32) {
                 stateText.setText(getString(R.string.connection_failed));
                 Toast.makeText(HomeActivity.this, getString(R.string.not_found), Toast.LENGTH_SHORT).show();
@@ -118,10 +129,83 @@ public class HomeActivity extends AppCompatActivity {
                     quickReplyDialog.show();
                 }
                 quickReplyDialog.addContent(info);
+            } else if (msg.what == 0x3A) {
+                queryFeatureList();
+            } else if (msg.what == 0x3B) {
+                queryBTAddress();
             }
         }
     };
 
+    private void queryWatchInfo() {
+        if (EABleManager.getInstance().getDeviceConnectState() == EABleConnectState.STATE_CONNECTED) {
+            EABleManager.getInstance().queryWatchInfo(QueryWatchInfoType.watch_info, new WatchInfoCallback() {
+                @Override
+                public void watchInfo(EABleWatchInfo eaBleWatchInfo) {
+                    if (eaBleWatchInfo != null) {
+                        if (eaBleWatchInfo.getProj_settings() == 1) {
+                            if (mHandler != null) {
+                                mHandler.sendEmptyMessage(0x3A);
+                            }
+                        }
+                    }
+                }
+
+                @Override
+                public void mutualFail(int i) {
+                    Log.e(TAG, "查询手表信息失败");
+
+                }
+            });
+        }
+    }
+
+    private void queryFeatureList() {
+        if (EABleManager.getInstance().getDeviceConnectState() == EABleConnectState.STATE_CONNECTED) {
+            EABleManager.getInstance().queryWatchInfo(QueryWatchInfoType.features, new FeaturesCallback() {
+                @Override
+                public void featuresList(EABleFeatures eaBleFeatures) {
+                    if (eaBleFeatures != null) {
+                        if (eaBleFeatures.getBt_one_key_connect() == 1) {
+                            if (eaBleFeatures.getSupport_get_bt_mac() == 1) {//需要初始化BT蓝牙
+                                if (mHandler != null) {
+                                    mHandler.sendEmptyMessage(0x3B);
+                                }
+                            } else {
+                                btMacAddress = blueAddress;
+                            }
+                        }
+                    }
+                }
+
+                @Override
+                public void mutualFail(int i) {
+                    Log.e(TAG, "查询功能列表失败");
+                }
+            });
+        }
+    }
+
+    private void queryBTAddress() {
+        if (EABleManager.getInstance().getDeviceConnectState() == EABleConnectState.STATE_CONNECTED) {
+            EABleManager.getInstance().queryWatchInfo(QueryWatchInfoType.bk_mac, new BTMacCallback() {
+                @Override
+                public void macData(String s) {
+                    if (TextUtils.isEmpty(s) || "".equalsIgnoreCase(s) || !BluetoothAdapter.checkBluetoothAddress(s)) {
+                        Log.e(TAG, "手表返回的mac地址错误");
+                    } else {
+                        btMacAddress = s;
+                        Log.e(TAG, "蓝牙地址:" + btMacAddress);
+                    }
+                }
+
+                @Override
+                public void mutualFail(int i) {
+                    Log.e(TAG, "查询bt地址失败");
+                }
+            });
+        }
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -155,7 +239,7 @@ public class HomeActivity extends AppCompatActivity {
                     EABleManager.getInstance().saveStressData(true);
                     EABleManager.getInstance().saveMultiData(true);
                     EABleManager.getInstance().saveSleepData(true);
-                    EABleManager.getInstance().connectToPeripheral(blueAddress, HomeActivity.this, new DeviceConnectListener(), 128, new DataReportListener(), new MotionListener(), false);
+                    EABleManager.getInstance().connectToPeripheral(blueAddress, HomeActivity.this, new DeviceConnectListener(), 128, new DataReportListener(), new MotionListener(), true);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -254,7 +338,7 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(new Intent(HomeActivity.this, MenuActivity.class));
                     } else if (getString(R.string.physiological_period).equalsIgnoreCase(apiName)) {
                         startActivity(new Intent(HomeActivity.this, PeriodActivity.class));
-                    } else if (getString(R.string.dial_ID).equalsIgnoreCase(apiName)) {
+                    } else if (getString(R.string.dial_switch).equalsIgnoreCase(apiName)) {
                         startActivity(new Intent(HomeActivity.this, SystemDialActivity.class));
                     } else if (getString(R.string.push_switch).equalsIgnoreCase(apiName)) {
                         startActivity(new Intent(HomeActivity.this, PushSwitchActivity.class));
@@ -304,6 +388,8 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(new Intent(HomeActivity.this, BTActivity.class));
                     } else if (getString(R.string.reply_message).equalsIgnoreCase(apiName)) {
                         startActivity(new Intent(HomeActivity.this, MsgActivity.class));
+                    } else if (getString(R.string.bk_address).equalsIgnoreCase(apiName)) {
+                        startActivity(new Intent(HomeActivity.this, GetBKAddressActivity.class));
                     } else {
                         Toast.makeText(HomeActivity.this, getString(R.string.unknown), Toast.LENGTH_SHORT).show();
                     }
@@ -330,7 +416,7 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        LogUtils.e(TAG,"主页销毁");
+        LogUtils.e(TAG, "主页销毁");
         if (unbinder != null) {
             unbinder.unbind();
             unbinder = null;
@@ -684,10 +770,18 @@ public class HomeActivity extends AppCompatActivity {
         @Override
         public void startBTConnect() {
             Log.e(TAG, "开始连接BT");
+            if (TextUtils.isEmpty(btMacAddress) || "".equalsIgnoreCase(btMacAddress) || !BluetoothAdapter.checkBluetoothAddress(btMacAddress)) {
+                Log.e(TAG, "bk地址不存在或者地址不合法");
+            } else {
+                Intent intent = new Intent("east.apex.bt.connect");
+                intent.putExtra("bt_address", btMacAddress);
+                intent.setPackage(getPackageName());
+                sendBroadcast(intent);
+            }
         }
 
         @Override
-        public void btStatus(EABleSwitch eaBleSwitch) {
+        public void btStatus(EABleBTSwitch eaBleSwitch) {
             Log.e(TAG, "BT状态:" + eaBleSwitch.getValue());
         }
 

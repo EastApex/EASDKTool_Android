@@ -95,6 +95,7 @@
     <string name="language_greek">Greek</string>
     <string name="language_hebrew">Hebrew</string>
     <string name="language_swedish">Swedish</string>
+    <string name="language_hindi">Hindi</string>
     <string name="device_unit_metric">Metric(m,km,cm)</string>
     <string name="device_unit_imperial">Imperial(feet,miles,inch)</string>
     <string name="device_action_restore">Restore factory settings</string>
@@ -107,6 +108,7 @@
     <string name="end_time">End time</string>
     <string name="switch_state_close">Off</string>
     <string name="switch_state_on">On</string>
+    <string name="bt_on_and_connect">Bt on and connect</string>
     <string name="on_or_off">On or off</string>
     <string name="hometown_name">Hometown name</string>
     <string name="add_failed">Add failed</string>
@@ -249,6 +251,7 @@
     <string name="WorkoutState">Workout status</string>
     <string name="Hided">Hided</string>
     <string name="system_dial">System dial</string>
+    <string name="online_dial">Online dial</string>
     <string name="other">Other</string>
     <string name="wechat">Wechat</string>
     <string name="qq">QQ</string>
@@ -345,6 +348,7 @@
     <string name="watch_sport">Watch movement</string>
     <string name="joint_type">Joint type</string>
     <string name="operation_succeeded">Operation succeeded</string>
+    <string name="dial_switch">Dial switching</string>
     <string-array name="priority">
         <item>@string/priority_sync_daily</item>
         <item>@string/priority_sync_sleep</item>
@@ -424,7 +428,7 @@
         <item>@string/combination_information</item>
         <item>@string/main_menu</item>
         <item>@string/physiological_period</item>
-        <item>@string/dial_ID</item>
+        <item>@string/dial_switch</item>
         <item>@string/push_switch</item>
         <item>@string/blood_pressure_calibration</item>
         <item>@string/automatic_monitoring_information</item>
@@ -450,6 +454,7 @@
         <item>@string/social_contact</item>
         <item>@string/bt</item>
         <item>@string/reply_message</item>
+        <item>@string/bk_address</item>
     </string-array>
     <string name="watch_information">Watch information</string>
     <string name="user_information">User information</string>
@@ -603,4 +608,5 @@
     <string name="msg_3">Information 3</string>
     <string name="msg_4">Information 4</string>
     <string name="reply">Quick reply content</string>
+    <string name="bk_address">BK address</string>
 </resources>

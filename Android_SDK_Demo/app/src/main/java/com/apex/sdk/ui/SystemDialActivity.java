@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,14 +24,18 @@ import com.apex.bluetooth.model.EABleWatchFace;
 import com.apex.bluetooth.utils.LogUtils;
 import com.apex.sdk.R;
 import com.apex.sdk.dialog.MonthDialog;
+import com.apex.sdk.dialog.OnlineDialDialog;
 import com.apex.sdk.dialog.WaitingDialog;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public class SystemDialActivity extends AppCompatActivity {
-    private final String TAG=this.getClass().getSimpleName();
+    private final String TAG = this.getClass().getSimpleName();
     private Unbinder unbinder;
     private WaitingDialog waitingDialog;
     private MonthDialog ageDialog;
@@ -38,6 +44,11 @@ public class SystemDialActivity extends AppCompatActivity {
     TextView restText;
     @BindView(R.id.tool)
     Toolbar toolbar;
+    @BindView(R.id.online_dial)
+    TextView onlineText;
+    List<String> dialList;
+    OnlineDialDialog onlineDialDialog;
+    private String onlineDial;
     private Handler mHandler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -49,7 +60,42 @@ public class SystemDialActivity extends AppCompatActivity {
                     }
                 }
                 EABleWatchFace eaBleWatchFace = (EABleWatchFace) msg.obj;
-                restText.setText(eaBleWatchFace.getId() > 0 ? (eaBleWatchFace.getId() + "") : eaBleWatchFace.getUser_wf_id());
+                if (eaBleWatchFace.getId() > 0) {
+                    restText.setText(eaBleWatchFace.getId() + "");
+                } else {
+                    onlineText.setText(eaBleWatchFace.getUser_wf_id());
+                }
+                dialList = new ArrayList<>();
+                if (!TextUtils.isEmpty(eaBleWatchFace.user_wf_id_0)) {
+                    dialList.add(eaBleWatchFace.getUser_wf_id_0());
+                }
+                if (!TextUtils.isEmpty(eaBleWatchFace.user_wf_id_1)) {
+                    dialList.add(eaBleWatchFace.getUser_wf_id_1());
+                }
+                if (!TextUtils.isEmpty(eaBleWatchFace.user_wf_id_2)) {
+                    dialList.add(eaBleWatchFace.getUser_wf_id_2());
+                }
+                if (!TextUtils.isEmpty(eaBleWatchFace.user_wf_id_3)) {
+                    dialList.add(eaBleWatchFace.getUser_wf_id_3());
+                }
+                if (!TextUtils.isEmpty(eaBleWatchFace.user_wf_id_4)) {
+                    dialList.add(eaBleWatchFace.getUser_wf_id_4());
+                }
+                if (!TextUtils.isEmpty(eaBleWatchFace.user_wf_id_5)) {
+                    dialList.add(eaBleWatchFace.getUser_wf_id_5());
+                }
+                if (!TextUtils.isEmpty(eaBleWatchFace.user_wf_id_6)) {
+                    dialList.add(eaBleWatchFace.getUser_wf_id_6());
+                }
+                if (!TextUtils.isEmpty(eaBleWatchFace.user_wf_id_7)) {
+                    dialList.add(eaBleWatchFace.getUser_wf_id_7());
+                }
+                if (!TextUtils.isEmpty(eaBleWatchFace.user_wf_id_8)) {
+                    dialList.add(eaBleWatchFace.getUser_wf_id_8());
+                }
+                if (!TextUtils.isEmpty(eaBleWatchFace.user_wf_id_9)) {
+                    dialList.add(eaBleWatchFace.getUser_wf_id_9());
+                }
             } else if (msg.what == 0x41) {
                 if (waitingDialog != null) {
                     if (waitingDialog.isShowing()) {
@@ -71,6 +117,13 @@ public class SystemDialActivity extends AppCompatActivity {
                     }
                 }
                 Toast.makeText(SystemDialActivity.this, getString(R.string.modification_failed), Toast.LENGTH_SHORT).show();
+            } else if (msg.what == 0x44) {
+                if (waitingDialog != null) {
+                    if (waitingDialog.isShowing()) {
+                        waitingDialog.dismiss();
+                    }
+                }
+                onlineText.setText(onlineDial);
             }
         }
     };
@@ -95,7 +148,7 @@ public class SystemDialActivity extends AppCompatActivity {
                 waitingDialog = new WaitingDialog(SystemDialActivity.this);
             }
             waitingDialog.show();
-            LogUtils.e(TAG,"开始查询当前表盘");
+            LogUtils.e(TAG, "开始查询当前表盘");
             EABleManager.getInstance().queryWatchInfo(QueryWatchInfoType.dial, new WatchFaceCallback() {
                 @Override
                 public void watchFaceInfo(EABleWatchFace eaBleWatchFace) {
@@ -134,10 +187,9 @@ public class SystemDialActivity extends AppCompatActivity {
                                 tempRest = sex;
                                 EABleWatchFace eaBleWatchFace = new EABleWatchFace();
                                 eaBleWatchFace.setId(sex);
-                                LogUtils.e(TAG,"开始设置当前表盘");
                                 EABleManager.getInstance().setWatchFace(eaBleWatchFace, new GeneralCallback() {
                                     @Override
-                                    public void result(boolean success,int reason) {
+                                    public void result(boolean success, int reason) {
                                         if (mHandler != null) {
                                             mHandler.sendEmptyMessage(0x42);
                                         }
@@ -157,6 +209,49 @@ public class SystemDialActivity extends AppCompatActivity {
                         ageDialog.show();
                     }
                 }
+            }
+        });
+        onlineText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (EABleManager.getInstance().getDeviceConnectState() == EABleConnectState.STATE_CONNECTED) {
+                    if (onlineDialDialog == null) {
+                        onlineDialDialog = new OnlineDialDialog(SystemDialActivity.this, dialList);
+                        onlineDialDialog.setSelectListener(new OnlineDialDialog.SelectListener() {
+                            @Override
+                            public void selectDial(String dial) {
+                                if (waitingDialog == null) {
+                                    waitingDialog = new WaitingDialog(SystemDialActivity.this);
+                                }
+                                if (!waitingDialog.isShowing()) {
+                                    waitingDialog.show();
+                                }
+                                onlineDial = dial;
+                                EABleWatchFace eaBleWatchFace = new EABleWatchFace();
+                                eaBleWatchFace.setUser_wf_id(dial);
+                                EABleManager.getInstance().setWatchFace(eaBleWatchFace, new GeneralCallback() {
+                                    @Override
+                                    public void result(boolean success, int reason) {
+                                        if (mHandler != null) {
+                                            mHandler.sendEmptyMessage(0x44);
+                                        }
+                                    }
+
+                                    @Override
+                                    public void mutualFail(int errorCode) {
+                                        if (mHandler != null) {
+                                            mHandler.sendEmptyMessage(0x43);
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    }
+                    if (!onlineDialDialog.isShowing()) {
+                        onlineDialDialog.show();
+                    }
+                }
+
             }
         });
     }
@@ -179,6 +274,10 @@ public class SystemDialActivity extends AppCompatActivity {
             ageDialog.dismiss();
             ageDialog.destroyDialog();
             ageDialog = null;
+        }
+        if (onlineDialDialog != null) {
+            onlineDialDialog.destroyDialog();
+            onlineDialDialog = null;
         }
         super.onDestroy();
     }

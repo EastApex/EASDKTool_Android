@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="@string/system_dial"
+            android:text="@string/dial_switch"
             android:textSize="@dimen/adapter_recyclerview_device_name_txt_size" />
     </RelativeLayout>
 
@@ -39,10 +39,36 @@
             android:id="@+id/rest_screen"
             android:layout_width="@dimen/zero"
             android:layout_height="match_parent"
-            android:layout_weight="1.0"
+            android:background="@color/frame_color"
+            android:layout_weight="2.0"
             android:clickable="true"
             android:gravity="center_vertical|end"
             android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
     </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/row_height"
+        android:layout_marginTop="@dimen/dimen_5">
+
+        <TextView
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:gravity="center_vertical"
+            android:text="@string/online_dial"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+
+        <TextView
+            android:id="@+id/online_dial"
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:background="@color/frame_color"
+            android:layout_weight="2.0"
+            android:clickable="true"
+            android:gravity="center_vertical|end"
+            android:textSize="@dimen/adapter_recyclerview_device_address_txt_size" />
+    </TableRow>
+
 
 </LinearLayout>

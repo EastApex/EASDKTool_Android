@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.apex.bluetooth.callback.GeneralCallback;
 import com.apex.bluetooth.callback.HeartCheckCallback;
 import com.apex.bluetooth.callback.WatchFaceCallback;
@@ -37,6 +39,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public class DeleteDialActivity extends AppCompatActivity {
+    final String TAG = this.getClass().getSimpleName();
     private Unbinder unbinder;
     private WaitingDialog waitingDialog;
     @BindView(R.id.tool)
@@ -58,6 +61,7 @@ public class DeleteDialActivity extends AppCompatActivity {
                     }
                 }
                 EABleWatchFace eaBleWatchFace = (EABleWatchFace) msg.obj;
+                Log.e(TAG, "获取的表盘信息:" + JSONObject.toJSONString(eaBleWatchFace));
                 dial = new ArrayList<>();
                 if (!TextUtils.isEmpty(eaBleWatchFace.getUser_wf_id_0())) {
                     dial.add(eaBleWatchFace.getUser_wf_id_0());
@@ -90,13 +94,13 @@ public class DeleteDialActivity extends AppCompatActivity {
                     dial.add(eaBleWatchFace.getUser_wf_id_9());
                 }
                 dialAdapter.notifyDataSetChanged();
-            }else if (msg.what==0x41){
+            } else if (msg.what == 0x41) {
                 if (waitingDialog != null) {
                     if (waitingDialog.isShowing()) {
                         waitingDialog.dismiss();
                     }
                 }
-            }else if (msg.what == 0x42) {
+            } else if (msg.what == 0x42) {
                 dialAdapter.notifyDataSetChanged();
             } else if (msg.what == 0x43) {
                 if (waitingDialog != null) {
@@ -163,7 +167,7 @@ public class DeleteDialActivity extends AppCompatActivity {
                     }
                     EABleManager.getInstance().deleteCustomDial(dial.get(0), new GeneralCallback() {
                         @Override
-                        public void result(boolean b,int reason) {
+                        public void result(boolean b, int reason) {
                             dial.remove(0);
                             if (mHandler != null) {
                                 mHandler.sendEmptyMessage(0x42);

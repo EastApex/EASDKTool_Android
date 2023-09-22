@@ -35,8 +35,8 @@
 
         <activity
             android:name=".ui.HomeActivity"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTask"/>
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.WatchInfoActivity"
             android:screenOrientation="portrait" />
@@ -218,6 +218,38 @@
         <activity
             android:name=".ui.MsgActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.GetBKAddressActivity"
+            android:screenOrientation="portrait" />
+
+        <receiver
+            android:name="com.apex.bluetooth.broadcast.ClassicBluetoothBondReceiver"
+            android:enabled="true">
+            <intent-filter android:priority="1000">
+                <action android:name="east.apex.bluetooth.headset.proxy" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter android:priority="1000">
+                <action android:name="east.apex.bt.connect" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter android:priority="1000">
+                <action android:name="east.apex.bluetooth.a2dp.proxy" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter android:priority="1000">
+                <action android:name="android.bluetooth.device.action.BOND_STATE_CHANGED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter android:priority="1000">
+                <action android:name="android.bluetooth.a2dp.profile.action.CONNECTION_STATE_CHANGED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter android:priority="1000">
+                <action android:name="android.bluetooth.headset.profile.action.CONNECTION_STATE_CHANGED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
 
         <provider
             android:name="androidx.core.content.FileProvider"
